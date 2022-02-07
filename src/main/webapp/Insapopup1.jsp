@@ -44,13 +44,12 @@
                 <option value="black">블랙</option>
             </select>
             <input type="submit">
-          </form> -->
-        <form> <input type='date' id='currentDate'/></form>  
+          </form> --> 
+         
+          <!-- form 부분에서 날짜값을 받아오는 파라미터 CheckDate --> 
+          
+        <form> <input type='date' id='CheckDate'/></form>  
         <script>  document.getElementById('currentDate').value = new Date().toISOString().substring(0, 10);;</script>
-        
-        <br> </br>
-        <br> table 2 join & group by having .. 근데 값이 안 나옴.. <br>
-        <br>query 성공하면 화면 구현 마무리 할 거 / 아직 dao 페이지 안 나눠놓음..<br>
         
         </table>
         

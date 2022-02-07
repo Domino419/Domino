@@ -113,7 +113,6 @@ td {
 				.getDate());
 		buildCalendar(); 
 	}
-
 	function nextCalendar() {
 		today = new Date(today.getFullYear(), today.getMonth() + 1, today
 				.getDate());
@@ -130,7 +129,6 @@ td {
 		
 		tbCalendarYM.innerHTML = today.getFullYear() + "년 "
 				+ (today.getMonth() + 1) + "월";
-
 		/*while은 이번달이 끝나면 다음달로 넘겨주는 역할*/
 		while (tbCalendar.rows.length > 2) {
 			

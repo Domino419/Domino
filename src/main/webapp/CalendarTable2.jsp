@@ -46,8 +46,8 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">   <!-- nav bat menu list  -->
             <ul class="nav navbar-nav">
                 <li><a href="main.jsp">메인</a></li>
-                <li class="active"><a href="bbs.jsp">게시판</a></li>
-                <li><a href="CalendarTable.jsp">달력</a></li>   <!-- 0122 메뉴 추가 -->
+                <li><a href="bbs.jsp">게시판</a></li>
+                <li class="active"><a href="CalendarTable.jsp">달력</a></li>   <!-- 0122 메뉴 추가 -->
                 <li><a href="InsaTable.jsp">인사관리</a></li>
                 <li><a href="RsTable.jsp">성과관리</a></li>
                 <li><a href="DsbTable.jsp">자재관리</a></li>
@@ -104,8 +104,8 @@ td {
 </style>
 <script type="text/javascript">
         var today = new Date();
-	var date = new Date();
-	function prevCalendar() {
+	    var date = new Date();
+	    function prevCalendar() {
 		today = new Date(today.getFullYear(), today.getMonth() - 1, today
 				.getDate());
 		buildCalendar(); 

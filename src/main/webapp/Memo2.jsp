@@ -7,8 +7,6 @@
 <!DOCTYPE html>
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-
 <meta name="viewport" content="width=device-width" initial-scale="1" > 
 <link rel="stylesheet" href="css/bootstrap.css">
 <title>JSP 게시판 웹 사이트</title>
@@ -115,9 +113,8 @@
                 
                     <tr>
                         <td><%=list.get(i).getData() %></td>                    
-                        <td><a href="MemoUpdate.jsp?memoid=<%=list.get(i).getMemoid()%>"><%=list.get(i).getWorkcoment() %></a></td>  
+                        <td><a href="MemoUpdate.jsp?memoid=<%=list.get(i).getMemoid()%>"><%=list.get(i).getWorkcoment() %></a></td>                     
                         <td><a href="MemoUpdate.jsp?memoid=<%=list.get(i).getMemoid()%>"><%=list.get(i).getComent() %> <width='200' style='word-break:break-all'> </a></td> 
-                        
                                
                 <%
                     }
