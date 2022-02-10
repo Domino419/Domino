@@ -8,23 +8,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-
-/**
-  * @FileName : TodoDao.java
-  * @Project : Jsptest
-  * @Date : 2022. 2. 9. 
-  * @작성자 : bluem
-  * @변경이력 :
-  * @프로그램 설명 :
-  */
-/**
-  * @FileName : TodoDao.java
-  * @Project : Jsptest
-  * @Date : 2022. 2. 9. 
-  * @작성자 : bluem
-  * @변경이력 :
-  * @프로그램 설명 :
-  */
 public class TodoDao {
 
   Connection conn = null;       //JDBC 설정 연결하기  
@@ -57,7 +40,7 @@ public String getDate() // 현재시간을 넣어주기위해
 public int getNext()   //게시글 번호 가져오기 
 {
      String SQL = "SELECT MAX(TodoID) FROM Todolist";   
-	//String SQL = "SELECT bbsID from bbsjsp order by bbsID desc";   
+	
     try {
         PreparedStatement pstmt = conn.prepareStatement(SQL);
         rs = pstmt.executeQuery();
@@ -72,6 +55,8 @@ public int getNext()   //게시글 번호 가져오기
 }
 public int write(String todoTitle, String userID, String todoContent) {
     String SQL = "INSERT INTO todolist VALUES (?,?,?,?,?,?,?)";
+  //String SQL = "INSERT INTO todolist VALUES (1,2,3,4,5,6,7)";
+    
     try {
         PreparedStatement pstmt = conn.prepareStatement(SQL);
         String title;
@@ -98,8 +83,7 @@ public int write(String todoTitle, String userID, String todoContent) {
     		+ "    		WHERE RNUM >= ? AND RNUM <= ? ";
     ArrayList<TodoDto> list = new ArrayList<TodoDto>();
     try {
-        PreparedStatement pstmt = conn.prepareStatement(SQL);
-       // pstmt.setInt(1, 10);        
+        PreparedStatement pstmt = conn.prepareStatement(SQL);  
         pstmt.setInt(1, (pageNumber - 1 ) * 10 + 1);
         pstmt.setInt(2, (pageNumber - 1 ) * 10 + 10);
         rs = pstmt.executeQuery();
@@ -136,6 +120,17 @@ public int write(String todoTitle, String userID, String todoContent) {
          return false; 
      }
  
+     
+     
+/**
+  * @Method Name : gettodo
+  * @작성일 : 2022. 2. 9.
+  * @작성자 : bluem
+  * @변경이력 : 
+  * @Method 설명 : todolist에 data 입력하는 method  ( 함수 != method)
+  * @param todoID
+  * @return
+  */
 public TodoDto gettodo(int todoID)
 {
         String SQL = "SELECT * FROM TODOLIST WHERE TODOID = ?"; 
@@ -201,8 +196,8 @@ public int delete(int todoID)
   * @작성일 : 2022. 2. 9.
   * @작성자 : bluem
   * @변경이력 : 아직 구현 전 (-_-)
-  * @Method 설명 : TODO LIST 완료 처리 여부에 대한 프로그램 / 웹 드롭박스에서 선택값을 db에 반영해주는 함수
-  * @param 
+  * @Method 설명 : TODO LIST 완료 처리 여부에 대한 Method 입력값은 가접수, 접수, 할당, 완료로 제한, 접수를 Default 
+  * @param todoID
   * @return
   */
 public int complete(int todoID)
