@@ -51,7 +51,17 @@
                 <li><a href="InsaTable.jsp">인사관리</a></li>
                 <li><a href="RsTable.jsp">성과관리</a></li>
                 <li><a href="DsbTable.jsp">자재관리</a></li>
-                <li><a href="Memo.jsp">MEMO</a></li>
+                  <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                        <a href="#" class = "dropdown-toggle"
+                            data-toggle="dropdown" role ="button" aria-haspopup="true"
+                            aria-expanded="false">Project history <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="Memo.jsp">작업일지</li></a>
+                                <li><a href="Todo.jsp">To do list </li></a>
+                            </ul>
+                        </li>
+                    </ul>
             </ul>
             <%
             // 접속하기는 로그인이 되어있지 않은 경우만 나오게한다
@@ -132,7 +142,7 @@
                 } %>
                 <div>
                 <div align="center" >
-                <button onclick="window.open('Sorrypage.jsp','구현전 페이지','width=430,height=500,location=no,status=no,scrollbars=yes');">일정 추가하기 (구현 전)</button> </div>
+                <button onclick="window.open('TodoWrite.jsp','Todo','width=430,height=500,location=no,status=no,scrollbars=yes');">할일 추가</button> </div>
 		      <!--  <br><a href="#"  onclick="window.open('Sorrypage.jsp','window팝업','width=300, height=300, menubar=no, status=yes, toolbar=yes');">일정 추가하기(2미구현) </a><br> 
 
 		 <a href="Todowrite.jsp" class="btn btn-primary pull-right">일정 추가하기</a> 

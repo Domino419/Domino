@@ -50,7 +50,17 @@
                 <li><a href="InsaTable.jsp">인사관리</a></li>
                 <li><a href="RsTable.jsp">성과관리</a></li>
                 <li><a href="DsbTable.jsp">자재관리</a></li>
-                <li><a href="Memo.jsp">MEMO</a></li>
+                  <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                        <a href="#" class = "dropdown-toggle"
+                            data-toggle="dropdown" role ="button" aria-haspopup="true"
+                            aria-expanded="false">Project history <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="Memo.jsp">작업일지</li></a>
+                                <li><a href="Todo.jsp">To do list </li></a>
+                            </ul>
+                        </li>
+                    </ul>
             </ul>
             
             
@@ -91,7 +101,7 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="js/bootstrap.js"></script>
 </body>
-</html>
+
 <head>
 <title>달력</title>
 <style type="text/css">
@@ -255,40 +265,59 @@ td {
 <body>
     <p></p>
     <h3 align="center"></h3>
-<table id="calendar" border="3" align="center" style="border-color:#3333FF ">
-    <tr><!-- label은 마우스로 클릭을 편하게 해줌 -->
-    <center>
-     <H2>일정 추가</H2>
-     <H2>  </H2>
-   <form name=memoAdd method=get action=CalendarAction.jsp>        <!--액샨 태그 위치  --> 
-   <input type=text name=memoYear size=4>년
-   <input type=text name=memoMonth size=2>월
-   <input type=text name=memoDay size=2>일
-   내용 : <input type=text name=memoContents>
-   <input type=submit value="추가">
-   <h2>  </h2>
-  </form>
-  
-        <td><label onclick="prevCalendar()"><</label></td>
-        <td align="center" id="tbCalendarYM" colspan="5"> yyyy년 m월</td>
+    <element>
+    	<table id="calendar" border="3" align="center"
+    		style="border-color:#3333FF ">
+    		<tr><!-- label은 마우스로 클릭을 편하게 해줌 -->
+    			<center>
+    				<H2>일정 추가</H2>
+    				<H2></H2>
+    				<form name=memoAdd method=get
+    					action=CalendarAction.jsp>
+<!--액샨 태그 위치  -->
+    					<input type=text name=memoYear size=4>
+    					년
+    					<input type=text name=memoMonth size=2>
+    					월
+    					<input type=text name=memoDay size=2>
+    					일 내용 :
+    					<input type=text name=memoContents>
+    					<input type=submit value="추가">
+    					<h2></h2>
+    				</form>
 
-        <td><label onclick="nextCalendar()">>
-            
-        </label></td>
-    </tr>
-    <tr>
-        <td align="center"><font color ="#F79DC2">일</td>
-        <td align="center">월</td>
-        <td align="center">화</td>
-        <td align="center">수</td>
-        <td align="center">목</td>
-        <td align="center">금</td>
-        <td align="center"><font color ="skyblue">토</td>
-    </tr> 
-    
+    				<td>
+    					<label onclick="prevCalendar()"></label>
+    				</td>
+    				<td align="center" id="tbCalendarYM" colspan="5">
+    					yyyy년 m월
+    				</td>
 
-</table>
-<script language="javascript" type="text/javascript">
+    				<td>
+    					<label onclick="nextCalendar()">
+    						>
+
+    					</label>
+    				</td>
+    		</tr>
+    		<tr>
+    			<td align="center">
+    				<font color="#F79DC2">일
+    			</td>
+    			<td align="center">월</td>
+    			<td align="center">화</td>
+    			<td align="center">수</td>
+    			<td align="center">목</td>
+    			<td align="center">금</td>
+    			<td align="center">
+    				<font color="skyblue">토
+    			</td>
+    		</tr>
+
+
+    	</table>
+    </element>
+    <script language="javascript" type="text/javascript">
   buildCalendar();  
 </script>
 </body>

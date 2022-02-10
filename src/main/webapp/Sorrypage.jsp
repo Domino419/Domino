@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-  <h2>페이지 준비 중입니다. </h2>
+  <h2>페이지 준비 중 </h2>
+  <h2>404 에러를 피하기 위해 임시로 만든 페이지  </h2>
 </body>
 </html>

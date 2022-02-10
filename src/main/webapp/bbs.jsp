@@ -51,7 +51,17 @@
                 <li><a href="InsaTable.jsp">인사관리</a></li>
                 <li><a href="RsTable.jsp">성과관리</a></li>
                 <li><a href="DsbTable.jsp">자재관리</a></li>
-                <li><a href="Memo.jsp">MEMO</a></li>
+                <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                        <a href="#" class = "dropdown-toggle"
+                            data-toggle="dropdown" role ="button" aria-haspopup="true"
+                            aria-expanded="false">Project history <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="Memo.jsp">작업일지</li></a>
+                                <li><a href="Todo.jsp">To do list </li></a>
+                            </ul>
+                        </li>
+                    </ul>
             </ul>
             <%
             // 접속하기는 로그인이 되어있지 않은 경우만 나오게한다
