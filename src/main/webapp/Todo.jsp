@@ -1,14 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter" %>
-<%@ page import="BBS.MemoDao" %>
-<%@ page import="BBS.Memo" %>
+<%@ page import="Todo.TodoDao" %>
+<%@ page import="Todo.TodoDto" %>
 <%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-
 <meta name="viewport" content="width=device-width" initial-scale="1" > 
 <link rel="stylesheet" href="css/bootstrap.css">
 <title>JSP 게시판 웹 사이트</title>
@@ -32,8 +30,7 @@
     {
         pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
     }
-    
- %>
+%>
 
     <nav class ="navbar navbar-default">
         <div class="navbar-header"> <!-- 홈페이지의 로고 -->
@@ -49,12 +46,12 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">   <!-- nav bat menu list  -->
             <ul class="nav navbar-nav">
                 <li><a href="main.jsp">메인</a></li>
-                <li><a href="bbs.jsp">게시판</a></li>
+                <li class="active"><a href="bbs.jsp">게시판</a></li>
                 <li><a href="CalendarTable.jsp">달력</a></li>   <!-- 0122 메뉴 추가 -->
                 <li><a href="InsaTable.jsp">인사관리</a></li>
                 <li><a href="RsTable.jsp">성과관리</a></li>
                 <li><a href="DsbTable.jsp">자재관리</a></li>
-                <li class="active"><a href="Memo.jsp">MEMO</a></li>
+                <li><a href="Memo.jsp">MEMO</a></li>
             </ul>
             <%
             // 접속하기는 로그인이 되어있지 않은 경우만 나오게한다
@@ -95,48 +92,51 @@
             <table class="table table-striped" style="text-align:center; border:1px solid #dddddd">
                 <thead>
                     <tr>
-                    
-                    	<th style="background-color:#eeeeee; text-align:center;">일자</th>
-                        <th style="background-color:#eeeeee; text-align:center;">작업</th>
-                        <th style="background-color:#eeeeee; text-align:center;">세부내용</th>
-                        
-                      
+                        <th style="background-color:#eeeeee; text-align:center;">번호</th>
+                        <th style="background-color:#eeeeee; text-align:center;">제목</th>
+                        <th style="background-color:#eeeeee; text-align:center;">작성자</th>
+                        <th style="background-color:#eeeeee; text-align:center;">작성일</th>
                     </tr>
                 </thead>
-                <tbody>  
-                    <!-- 게시판 루트 바꿀 부분  -->
+                <tbody>
                     <%
-                    MemoDao MemoDao = new MemoDao();
-                    ArrayList<Memo> list = MemoDao.getList(pageNumber);
+                    TodoDao TodoDao = new TodoDao();
+                    ArrayList<TodoDto> list = TodoDao.getList(pageNumber);
                     //ArrayList<BBS> list = bbsDAO.getList();
                     for(int i = 0; i < list.size(); i++)
                     { 
                     %>
                 
-                                        <tr>
-                        <td><%=list.get(i).getData() %></td>                    
-                        <td><a href="MemoUpdate.jsp?memoid=<%=list.get(i).getMemoid()%>"><%=list.get(i).getWorkcoment() %></a></td>                     
-                        <td><a href="MemoUpdate.jsp?memoid=<%=list.get(i).getMemoid()%>"><%=list.get(i).getComent() %> <width='200' style='word-break:break-all'> </a></td> 
-                               
+                    <tr>
+                        <td><%=list.get(i).getTodoid() %></td>
+                        <td><a href="Todo.jsp?Todoid=<%=list.get(i).getTodoid()%>"><%=list.get(i).getTodotitle() %></a></td>
+                        <td><%=list.get(i).getUserid() %></td>
+                        <td><%=list.get(i).getTododata() %></td>
+                    </tr>
                 <%
                     }
                 %>
                 </tbody>
             </table>
-            <%
+			
+			<%
                 if(pageNumber != 1) {
             %>
-                <a href="Memo.jsp?pageNumber=<%=pageNumber - 1 %>" class="btn btn-success btn-arrow-left">이전</a>
+                <a href="Todo.jsp?pageNumber=<%=pageNumber - 1 %>" class="btn btn-success btn-arrow-left">이전</a>
             <%
                 } 
-               if (MemoDao.nextPage(pageNumber+ 1)) {
+               if (TodoDao.nextPage(pageNumber + 1)) {
             %>
-                <a href="Memo.jsp?pageNumber=<%=pageNumber + 1 %>" class="btn btn-success btn-arrow-left">다음</a>
+                <a href="Todo.jsp?pageNumber=<%=pageNumber + 1 %>" class="btn btn-success btn-arrow-left">다음</a>
             <%
                 } %>
-           <a href="MemoWrite.jsp" class="btn btn-primary pull-right">글쓰기</a>
-        </div>
-    </div>
+                <div>
+                <div align="center" >
+                <button onclick="window.open('Sorrypage.jsp','구현전 페이지','width=430,height=500,location=no,status=no,scrollbars=yes');">일정 추가하기 (구현 전)</button> </div>
+		      <!--  <br><a href="#"  onclick="window.open('Sorrypage.jsp','window팝업','width=300, height=300, menubar=no, status=yes, toolbar=yes');">일정 추가하기(2미구현) </a><br> 
+
+		 <a href="Todowrite.jsp" class="btn btn-primary pull-right">일정 추가하기</a> 
+		  <button onclick="Todowrite.jsp" class="btn btn-primary pull-right">일정 추가하기</a>  --> 
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="js/bootstrap.js"></script>
 </body>

@@ -42,13 +42,13 @@
     	script.println("</script>");
     }
     Memo Memo = new MemoDao().getMemo(memoid) ;
-    if (!userID.equals(Memo.getUserID())) {/*  작성자가 일치하지 않아도 상관없음, 로그인할 때 뭘로 로그인할지 몰라서..
-    	PrintWriter script = response.getWriter();
-    	script.println("<script>");
-    	script.println("alert('권한이 없습니다')");
-    	script.println("location.href = 'Memo.jsp'");
-    	script.println("</script>");
-     */}
+    //if (!userID.equals(Memo.getUserID())) {/*  작성자가 일치하지 않아도 상관없음, 로그인할 때 뭘로 로그인할지 몰라서..
+    //	PrintWriter script = response.getWriter();
+    //	script.println("<script>");
+   // 	script.println("alert('권한이 없습니다')");
+   // 	script.println("location.href = 'Memo.jsp'");
+   // 	script.println("</script>");
+    // */}
     %>
     <nav class ="navbar navbar-default">
         <div class="navbar-header"> <!-- 홈페이지의 로고 -->
