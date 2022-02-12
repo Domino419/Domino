@@ -68,8 +68,8 @@ public int write(String todoTitle, String userID, String todoContent) {
         pstmt.setString(3, userID);
         pstmt.setString(4, getDate());
         pstmt.setString(5, content);
-        pstmt.setString(6, "접수");
-        pstmt.setInt(7, 1);
+        pstmt.setString(7, "접수");
+        pstmt.setInt(6, 1);
         return pstmt.executeUpdate();
     } catch (Exception e) {
         e.printStackTrace();
