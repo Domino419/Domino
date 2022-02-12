@@ -1,0 +1,74 @@
+package Tableocl;
+
+import java.sql.*;
+import Tableocl.InsaTable;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.*;
+import oracle.*;
+
+
+public class InsaDao<Tableocl> {
+	 Connection conn = null;       
+     PreparedStatement pstmt = null;     
+	 ResultSet rs;                    
+
+	
+		
+		  public InsaDao() { 
+			  try
+				{
+					Class.forName("oracle.jdbc.driver.OracleDriver");
+					conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XE", "web_user", "pass");
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+
+			public int login(String userID, String userPassword) throws ClassNotFoundException, SQLException {
+				Class.forName("oracle.jdbc.driver.OracleDriver");
+				conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XE", "web_user", "pass");
+				String sql = "select userPassword from bbs where userID = ?";
+				// System.out.println(sql);
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, userID);
+				rs = pstmt.executeQuery();
+				// System.out.println(rs);
+				if (rs.next()) {
+					if (rs.getString(1).equals(userPassword)) {
+						return 1;
+					} else
+						return 0;
+				}
+				return -1;
+
+				// return -2; //DB
+
+       //인사 메뉴에서 표현하고 싶은 거 - , 당일 근무자수cnt, 근무비중 //
+			
+			public int InsaMenu(Tableocl Tableocl) {    //매개변수 추가 
+				String SQL = "SELECT DEPT1,  COUNT(*) FROM insamain WHERE outdate is null  GROUP BY DEPT1 ,dept2 ORDER BY COUNT(*) DESC;";
+				try {
+					pstmt = conn.prepareStatement(SQL);
+					pstmt.setString(1, Tableocl.Dept1();
+					pstmt.setString(2, Tableocl.getUserPassword());
+					pstmt.setString(3, Tableocl.getUserName());
+					pstmt.setString(4, Tableocl.getUserGender());
+					pstmt.setString(5, Tableocl.getUserEmail());
+					return pstmt.executeUpdate();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				return -1;
+			}
+			
+			
+			
+			private int Num ;    
+			private String Name ;   
+			private String InDate ;      
+			private String OutDate ;      
+			private String Dept1 ;     
+			private String Dept2 ;
+		}
+		

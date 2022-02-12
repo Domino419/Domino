@@ -1,0 +1,63 @@
+package Tableocl;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+
+public class InsaDao<Tableocl> {
+	 Connection conn = null;       
+     PreparedStatement pstmt = null;     
+	 ResultSet rs;                    
+
+		  public InsaDao() { 
+			  try
+				{
+					Class.forName("oracle.jdbc.driver.OracleDriver");
+					conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XE", "web_user", "pass");
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+
+			public int login(String userID, String userPassword) throws ClassNotFoundException, SQLException {
+				Class.forName("oracle.jdbc.driver.OracleDriver");
+				conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XE", "web_user", "pass");
+				String sql = "select userPassword from bbs where userID = ?";
+				// System.out.println(sql);
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, userID);
+				rs = pstmt.executeQuery();
+				// System.out.println(rs);
+				if (rs.next()) {
+					if (rs.getString(1).equals(userPassword)) {
+						return 1;
+					} else
+						return 0;
+				}
+				return -1;}
+
+				// return -2; //DB
+
+       //셀렉절 들어갈 거 소속1, 소속2, 재직자수  //
+			
+			public ResultSet InsaMenu(Tableocl Tableocl) {    //매개변수 추가 
+				String SQL = "SELECT DEPT1, DEPT2, COUNT(DEPT1) FROM Iasamain where outdate is '9999/12/31' Group by 1,2,3; ";
+			   try {
+					pstmt = conn.prepareStatement(SQL);
+				//	pstmt.setString(1, Tableocl.Dept1();
+				//  pstmt.setString(2, Tableocl.getUserPassword());
+				//	pstmt.setString(3, Tableocl.getUserName());
+				//	pstmt.setString(4, Tableocl.getUserGender());
+				//	pstmt.setString(5, Tableocl.getUserEmail());
+					return pstmt.executeQuery();    //매개변수가 없는 정적쿼리라서 executeUpdate메소드 사용 
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				//return -1 ;
+			return rs;
+			}
+         }
+		

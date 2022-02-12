@@ -38,7 +38,7 @@ public String getDate() // 현재시간을 넣어주기위해
 public int getNext()   //게시글 번호 가져오기 
 {
      String SQL = "SELECT MAX(bbsID) FROM BBSJSP";   
-	//String SQL = "SELECT bbsID from bbsjsp order by bbsID desc";   
+	  
     try {
         PreparedStatement pstmt = conn.prepareStatement(SQL);
         rs = pstmt.executeQuery();

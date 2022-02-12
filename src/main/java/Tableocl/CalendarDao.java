@@ -32,7 +32,7 @@ public class CalendarDao {
 				 * MemoDay = 0; MemoDay = new String(MemoDay.getBytes("iso-8859-1"),"euc-kr");
 				 * // String MemoContents = 0;
 				 */		        
-		        MemoContents = new String(MemoContents.getBytes("iso-8859-1"),"euc-kr");
+		        //MemoContents = new String(MemoContents.getBytes("iso-8859-1"),"euc-kr");
 		        
 		        pstmt.setInt(1, Integer.parseInt(MemoYear));
 		        pstmt.setInt(2, Integer.parseInt(MemoMonth));
