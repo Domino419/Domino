@@ -88,7 +88,6 @@
                 </div>
             </nav>
     <!DOCTYPE html>
-<html>
 <head>
 <title>달력</title>
 <style type="text/css">
@@ -268,7 +267,7 @@ td {
    <h2>  </h2>
   </form>
   
-        <td><label onclick="prevCalendar()"><</label></td>
+        <td><label onclick="prevCalendar()"></label></td>
         <td align="center" id="tbCalendarYM" colspan="5"> yyyy년 m월</td>
 
         <td><label onclick="nextCalendar()">>

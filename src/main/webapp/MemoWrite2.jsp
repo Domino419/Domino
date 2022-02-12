@@ -29,17 +29,14 @@
             
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown">
-                        <a href="#" class = "dropdown-toggle"
-                            data-toggle="dropdown" role ="button" aria-haspopup="true"
-                            aria-expanded="false">Project history <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="Memo.jsp">작업일지</li></a>
-                                <li><a href="Todo.jsp">To do list </li></a>
-                            </ul>
-                        </li>
-                    </ul>
+            <ul class="nav navbar-nav">
+                <li><a href="main.jsp">메인</a></li>
+                <li class="active"><a href="bbs.jsp">게시판</a></li>
+                <li><a href="CalendarTable.jsp">달력</a></li>
+                <li><a href="InsaTable.jsp">인사관리</a></li>
+                <li><a href="RsTable.jsp">성과관리</a></li>
+                <li><a href="DsbTable.jsp">자재관리</a></li>
+                <li><a href="Memo.jsp">MEMO</a></li>
             </ul>
             <%
                 if(userID == null)
@@ -76,16 +73,16 @@
     </nav>
     <div class="container">
         <div class="row">
-            <form method="post" action="writeAction.jsp">
+            <form method="post" action="MemoAction.jsp">
             <table class="table table-striped" style="text-align:center; border:1px solid #dddddd"><thead><tr>
-                        <th colspan="2" style="background-color:#eeeeee; text-align:center;">게시판 글쓰기 양식</th></tr>
+                        <th colspan="2" style="background-color:#eeeeee; text-align:center;">작업 메모 글쓰기 양식</th></tr>
                 </thead>
                 <tbody>
                     <tr>
-                    <td><input type="text" class="form-control" placeholder="글 제목"  name="bbstitle" maxlength="50" ></td>
+                    <td><input type="text" class="form-control" placeholder="글 제목"  name="workcoment" maxlength="50" ></td>
                     </tr>
                     <tr>
-                    <td><textarea class="form-control" placeholder="글 내용"  name="bbscontent" maxlength="2048" style="height:350px" ></textarea></td>
+                    <td><textarea class="form-control" placeholder="글 내용"  name="coment" maxlength="2048" style="height:350px" ></textarea></td>
                     </tr>
                 </tbody>
             </table>

@@ -84,7 +84,7 @@
     <div class="container">
         <div class="row">
             <!-- <form method="post" action="TodoAction.jsp"> -->
-            <form method="post" action="Sorrypage.jsp">
+            <form method="post" action="TodoAction.jsp">
             <table class="table table-striped" style="text-align:center; border:1px solid #dddddd"><thead><tr>
                         <th colspan="2" style="background-color:#eeeeee; text-align:center;">To do list 글쓰기 양식</th></tr>
                 </thead>
