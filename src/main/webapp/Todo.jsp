@@ -103,10 +103,10 @@
             <table class="table table-striped" style="text-align:center; border:1px solid #dddddd">
                 <thead>
                     <tr>
-                        <th style="background-color:#eeeeee; text-align:center;">번호</th>
-                        <th style="background-color:#eeeeee; text-align:center;">제목</th>
-                        <th style="background-color:#eeeeee; text-align:center;">작성자</th>
-                        <th style="background-color:#eeeeee; text-align:center;">작성일</th>
+                        <th style="background-color:#eeeeee; text-align:center;">진행상태</th>
+                        <th style="background-color:#eeeeee; text-align:center;">접수구분</th>
+                        <th style="background-color:#eeeeee; text-align:center;">내용</th>
+                        <th style="background-color:#eeeeee; text-align:center;">접수일</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -119,10 +119,12 @@
                     %>
                 
                     <tr>
-                        <td><%=list.get(i).getTodoid() %></td>
+                        <td><%=list.get(i).getTodo() %></td>
                         <td><a href="Todo.jsp?Todoid=<%=list.get(i).getTodoid()%>"><%=list.get(i).getTodotitle() %></a></td>
-                        <td><%=list.get(i).getUserid() %></td>
-                        <td><%=list.get(i).getTododata() %></td>
+                        <td><a href="Todo.jsp?Todoid=<%=list.get(i).getTodoid()%>"><%=list.get(i).getTodocontent() %></a></td>
+                        <td><a href="Todo.jsp?Todoid=<%=list.get(i).getTodoid()%>"><%=list.get(i).getTododata() %></a></td>
+                        <%-- <td><%=list.get(i).getUserid() %></td>
+                             <td><%=list.get(i).getTododata() %></td> --%>
                     </tr>
                 <%
                     }
