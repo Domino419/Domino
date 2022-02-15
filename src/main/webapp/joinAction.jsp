@@ -16,7 +16,7 @@
 </head>
 <body> 
 
-	 <% //UserDao user = new UserDao(); 
+	 <% 
 		if(user.getUserID() == null || user.getUserPassword() == null ) 
 		{
 	      PrintWriter script = response.getWriter();

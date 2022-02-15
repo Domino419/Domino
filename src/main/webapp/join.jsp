@@ -46,7 +46,7 @@
 	    <div class = "col - lg - 4"> </div>
 	    <div class = "col - lg - 4"> 
 	         <div class = "jumbotron" style = "padding-top : 20px;">
-	             <form> 
+	             
 	              <form method = "post" action ="joinAction.jsp"> <!-- post 사용해서 Joinaction으로   -->
 	               <h3 style = "text-align : center;"> 회원가입 화면 </h3>
 	                 <div class = "form-group">
