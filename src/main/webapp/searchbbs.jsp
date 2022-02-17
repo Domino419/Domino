@@ -111,23 +111,30 @@
                   <tbody>
                     <%
                     BbsDAO bbsDAO = new BbsDAO();
-                    ArrayList<BBS> list = bbsDAO.getList(pageNumber);
-                    //ArrayList<BBS> list = bbsDAO.getList();
+                    ArrayList<BBS> list = bbsDAO.getSearch(request.getParameter("searchField"), request.getParameter("searchText"));   
+                   
                     for(int i = 0; i < list.size(); i++)
-                    { 
-                    %>
-                
-                    <tr>
-                        <td><%=list.get(i).getBbsid() %></td>
-                        <td><a href="view.jsp?Bbsid=<%=list.get(i).getBbsid()%>"><%=list.get(i).getBbstitle() %></a></td>
-                        <td><%=list.get(i).getUserID() %></td>
-                        <td><%=list.get(i).getBbsdate() %></td>
-                    </tr>
-                <%
-                    }
-                %>
+                    	if (list.size() == 0) {
+							PrintWriter script = response.getWriter();
+							script.println("<script>");
+							script.println("alert('검색결과가 없습니다.')");
+							script.println("history.back()");
+							script.println("</script>");
+						}
+						for (int i = 0; i < list.size(); i++) {
+					%>
+					<tr>
+						<td><%=list.get(i).getBbsid()%></td>
+						<td><a href="view.jsp?bbsID=<%=list.get(i).getBbsid()%>"><%=list.get(i).getBbstitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;")
+						.replaceAll(">", "&gt;").replaceAll("\n", "<br>")%></a></td>
+						<td><%=list.get(i).getUserID()%></td>
+						 <td><%=list.get(i).getBbsdate() %></td>
+					</tr>
+					<%
+						}
+					%>
                 </tbody>
-			  	<div class="container">
+					<div class="container">
 					<div class="row">
 						<form method="post" name="search" action="searchbbs.jsp">
 							<div class="alert alert-info">
@@ -143,13 +150,13 @@
 										placeholder="검색어 입력" name="searchText" maxlength="100"></td>
 									<td><button type="submit" class="btn btn-success">검색</button></td>
 									<a href="write.jsp" class="btn btn-primary pull-right">글쓰기</a>
-									
+
 								</tr>
 							</table>
 
 							<%
-                if(pageNumber != 1) {
-            %>
+							if (pageNumber != 1) {
+							%>
 							<a href="bbs.jsp?pageNumber=<%=pageNumber - 1 %>"
 								class="btn btn-success btn-arrow-left">이전</a>
 							<%
@@ -161,7 +168,7 @@
 							<%
                 } %>
 
-						<!-- 	<a href="write.jsp" class="btn btn-primary pull-right">글쓰기</a> -->
+							<!-- <a href="write.jsp" class="btn btn-primary pull-right">글쓰기</a> -->
 
 							<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 							<script src="js/bootstrap.js"></script></body>
