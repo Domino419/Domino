@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter" %>
-<%@ page import="BBS.BbsDAO" %>
-<%@ page import="BBS.BBS" %>
+
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="Tableocl.CalendarDao" %>
+<%@ page import="Tableocl.Calendar" %>
+
 <!DOCTYPE html>
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -247,16 +249,14 @@ td {
                 
             }    
               if (cnt%7 == 0){
-                  cell.innerHTML = "<font color=skyblue>" + i
-                  //7번째의 cell에만 색칠
-                   row = calendar.insertRow();
-                   //토요일 다음에 올 셀을 추가
+                  cell.innerHTML = "<font color=skyblue>" + i  //7번째의 cell에만 색칠
+                   row = calendar.insertRow();      //토요일 다음에 올 셀을 추가
               }
               /*오늘의 날짜에 노란색 칠하기*/
               if (today.getFullYear() == date.getFullYear()
                  && today.getMonth() == date.getMonth()
                  && i == date.getDate()) {
-                 cell.bgColor = "#FAF58C";//셀의 배경색을 노랑으로 
+                 cell.bgColor = "#FAF58C";   //셀의 배경색을 노랑으로 
                }
              }
         }
@@ -274,7 +274,7 @@ td {
     				<H2></H2>
     				<form name=memoAdd method=get
     					action=CalendarAction.jsp>
-<!--액샨 태그 위치  -->
+<!--액션 태그 위치  -->
     					<input type=text name=memoYear size=4>
     					년
     					<input type=text name=memoMonth size=2>
@@ -287,7 +287,8 @@ td {
     				</form>
 
     				<td>
-    					<label onclick="prevCalendar()"></label>
+    					<label onclick="prevCalendar()"> < </label>
+    					
     				</td>
     				<td align="center" id="tbCalendarYM" colspan="5">
     					yyyy년 m월
@@ -320,5 +321,35 @@ td {
     <script language="javascript" type="text/javascript">
   buildCalendar();  
 </script>
+    <div class="container">
+        <div class="row">
+            <table class="table table-striped" style="text-align:center; border:1px solid #dddddd">
+                <thead>
+                    <tr>
+                        <th style="background-color:#eeeeee; text-align:center;">연</th>
+                        <th style="background-color:#eeeeee; text-align:center;">월</th>
+                        <th style="background-color:#eeeeee; text-align:center;">일</th>
+                        <th style="background-color:#eeeeee; text-align:center;">일정</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%
+                    CalendarDao CalendarDao = new CalendarDao();
+                    ArrayList<Calendar> list = CalendarDao.getList();
+                    for(int i = 0; i < list.size(); i++)
+                    { 
+                    %>
+                
+                    <tr>
+                        <td><%=list.get(1).getMemoYear() %></td>
+                        <td><%=list.get(i).getMemoMonth() %></td> 
+                        <td><%=list.get(i).getMemoDay() %></td>
+                        <td><%=list.get(i).getMemoContents() %></td>
+                    </tr>
+                <%
+                    }
+                %>
+                </tbody>
+            </table>
 </body>
 </html>

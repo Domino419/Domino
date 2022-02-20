@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter" %>    
-<%@ page import="BBS.Memo" %>  
-<%@ page import="BBS.MemoDao" %>  
+<%@ page import="Todo.TodoDao" %>
+<%@ page import="Todo.TodoDto" %>
 <%@ page import="java.sql.*" %>  
 
 <!DOCTYPE html>
@@ -14,8 +14,30 @@
 <title>write.jsp</title>
 </head>
 <body>
-<body>
+<!-- 
+<pre>
+
+<script type="text/javascript">
+
+var name = location.search;
+
+var arr = name.split('&');
+
+for(var i=0; i<arr.length; i++){
+
+// 	alert(arr[i]+"\n");
+
+	document.writeln(arr[i]);
+
+}
+
+</script>
+</pre>
+ -->
+
 <% request.setCharacterEncoding("UTF-8"); %>    
+
+
 
 <%
     String userID = null;
@@ -30,18 +52,30 @@
     	script.println("location.href = 'login.jsp'");
     	script.println("</script>");
     }
-    int memoid = 0;
-    if (request.getParameter("memoid") != null) {
-    	memoid = Integer.parseInt(request.getParameter("memoid"));
+
+
+    %>
+
+    
+    <%
+    
+    int todoID = 0;
+    if (request.getParameter("todoID") != null) {
+    	todoID = Integer.parseInt(request.getParameter("todoID"));
     }
-    if (memoid == 0) {
+    
+    if (todoID == 0) {
     	PrintWriter script = response.getWriter();
     	script.println("<script>");
     	script.println("alert('유효하지 않은 글입니다')");
-    	script.println("location.href = 'Memo.jsp'");
+    	script.println("location.href = 'Todo.jsp'");
     	script.println("</script>");
     }
-    Memo Memo = new MemoDao().getMemo(memoid) ;
+    
+    TodoDto tododto; 
+    tododto = new TodoDao().gettodo(todoID);
+    
+    // DTo 클래스명 , 변수 = 생성자 
     //if (!userID.equals(Memo.getUserID())) {/*  작성자가 일치하지 않아도 상관없음, 로그인할 때 뭘로 로그인할지 몰라서..
     //	PrintWriter script = response.getWriter();
     //	script.println("<script>");
@@ -85,28 +119,34 @@
     </nav>
     <div class="container">
         <div class="row">
-           <form method="post" action="MemoUpdateAction.jsp?=<%="MemoID"%>">
+           <form method="post" action="TodoUpdateAction.jsp?=<%="TodoID"%>">
             <table class="table table-striped" style="text-align:center; border:1px solid #dddddd"><thead><tr>
                         <th colspan="2" style="background-color:#eeeeee; text-align:center;">게시판 글수정 양식</th></tr>
                 </thead>
                 <tbody>
                                     <tr>
-                   <td><input type="text" class="form-control" placeholder="아이디"  name="memoID" maxlength="50" value = "<%=Memo.getMemoid() %>"></td> 
+                   <td><input type="text" class="form-control" placeholder="아이디"  name="todoid" maxlength="50" value = "<%=tododto.getTodoid() %>"></td> 
                     </tr>
                     <tr>
-                    <td><input type="text" class="form-control" placeholder="글 제목"  name="Workcoment" maxlength="50" value = "<%=Memo.getWorkcoment() %>"></td>
+                    <td><input type="text" class="form-control" placeholder="글 제목"  name="todotitle" maxlength="50" value = "<%=tododto.getTodotitle() %>"></td>
                     </tr>
                     <tr>
-                    <td><textarea class="form-control" placeholder="글 내용"  name="Coment" maxlength="2048" style="height:350px;"><%=Memo.getComent()%></textarea></td>
+                    <td><textarea class="form-control" placeholder="글 내용"  name="todocontent" maxlength="2048" style="height:350px;"><%=tododto.getTodocontent()%></textarea></td>
                     </tr>
                 </tbody>
             </table>
                 <input type="submit"  class="btn btn-primary pull-right" value="글수정">
+             
               
             </form>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="js/bootstrap.js"></script>
+</body>
+</html>
+
+
+
 </body>
 </html>
