@@ -133,7 +133,7 @@ public int write(String todoTitle, String userID, String todoContent) {
   */
 public TodoDto gettodo(int todoID)
 {
-        String SQL = "SELECT * FROM TODOLIST WHERE TODOID = ?"; 
+        String SQL = "SELECT * FROM TODOLIST WHERE TODOID = ?";  //select * 쓰지말것
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
             pstmt.setInt(1, todoID);
