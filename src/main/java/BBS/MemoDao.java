@@ -14,7 +14,7 @@ public class MemoDao {
 
 	  public MemoDao() { 
 		   try{ Class.forName("oracle.jdbc.driver.OracleDriver");
-	             conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XE","web_user","pass"); 
+	             conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XE","web_user","~~~~"); 
 	  }catch 
 		  (Exception e)
 				  { e.printStackTrace() ;    //connection부터 이까지 한 덩어리//
