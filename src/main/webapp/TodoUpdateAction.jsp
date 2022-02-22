@@ -53,7 +53,7 @@
 			script.println("</script>");
 		} else { */
 			TodoDao todo = new TodoDao() ;
-		    int result = todo.update(todoid, request.getParameter("todotitle"), request.getParameter("todocontent"));
+		    int result = todo.update(todoid, request.getParameter("todos"),request.getParameter("todotitle"), request.getParameter("todocontent"));
 			if (result == -1) { 
 				PrintWriter script = response.getWriter();
 				script.println("<script>");

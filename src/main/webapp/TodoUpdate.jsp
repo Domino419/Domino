@@ -125,12 +125,13 @@ for(var i=0; i<arr.length; i++){
                 </thead>
                 <tbody>
                                     <tr>
-                   <td><input type="text" class="form-control" placeholder="아이디"  name="todoid" maxlength="50" value = "<%=tododto.getTodoid() %>"></td> 
+                   <td><input type="text" readonly  class="form-control" placeholder="아이디"  name="todoid" maxlength="50" value = "<%=tododto.getTodoid() %>"></td> 
                     </tr>
+                    <tr>
+                     <td><input type="text" class="form-control" placeholder="작업상태"  name="todos" maxlength="50" value = "<%=tododto.getTodo() %>"></td>
                     <tr>
                     <td><input type="text" class="form-control" placeholder="글 제목"  name="todotitle" maxlength="50" value = "<%=tododto.getTodotitle() %>"></td>
                     </tr>
-                    <tr>
                     <td><textarea class="form-control" placeholder="글 내용"  name="todocontent" maxlength="2048" style="height:350px;"><%=tododto.getTodocontent()%></textarea></td>
                     </tr>
                 </tbody>

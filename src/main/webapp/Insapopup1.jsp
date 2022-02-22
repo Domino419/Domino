@@ -11,7 +11,7 @@
 	String pwd = "pass";
 	String url = "jdbc:oracle:thin:@localhost:1521:XE";
 	
-	String sql = "select * from INSAMAIN";%>
+	String sql = "SELECT A.dept1, NVL(A.dept2, '총합계'), COUNT(NUM) FROM insamain A  WHERE A.OUTDATE > '21/12/01' GROUP BY ROLLUP ( A.dept1,A.dept2 )";%>
 	
 <!DOCTYPE html>
 <html>
@@ -48,34 +48,34 @@
          
           <!-- form 부분에서 날짜값을 받아오는 파라미터 CheckDate --> 
           
-        <form> <input type='date' id='CheckDate'/></form>  
+         <!--  <form> <input type='date' id='CheckDate'/></form>  
         <script>  document.getElementById('currentDate').value = new Date().toISOString().substring(0, 10);;</script>
-        
+         -->
         </table>
         
           
     </html>
 	<table border="1">
-		<tr>
+		  <!--  <td colspan = "4"></td> -->
 			<td>부서1</td>
 			<td>부서2</td>
 			<td>재직자수</td>
 			<td>근무자수</td>
 			<td>근무비중</td>
-			<td>연차</td>
-			<td>반차</td>
+		
+
 		</tr>
 		<%
 			while (rs.next()) {
 		%>
 		<tr>
+			<td><%=rs.getString(1)%></td>
 			<td><%=rs.getString(2)%></td>
-			<td><%=rs.getString(2)%></td>
-			<td><%=rs.getString(2)%></td>
-			<td><%=rs.getString(2)%></td>
-			<td><%=rs.getString(2)%></td>
-			<td><%=rs.getString(2)%></td>
-			<td><%=rs.getString(2)%></td>
+			<td><%=rs.getString(3)%></td>
+			<td><%=rs.getString(3)%></td>
+			<td><%=rs.getString(3)%></td>
+			
+
 		</tr>
 	
 
