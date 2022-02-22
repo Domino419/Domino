@@ -15,7 +15,7 @@ public class TodoDao {
   ResultSet rs;                    //결과값 받아오는 객체  	
 
   public TodoDao() { try{ Class.forName("oracle.jdbc.driver.OracleDriver");
-  conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XE","web_user","~~~~"); 
+  conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XE","web_user","pass"); 
   }catch 
 	  (Exception e)
 			  { e.printStackTrace() ;    //connection부터 이까지 한 덩어리//
@@ -158,18 +158,21 @@ public TodoDto gettodo(int todoID)
     }
 
 
- public int update (int todoID, String todotitle, String todocontent) throws UnsupportedEncodingException {
+ public int update (int todoID,String todos,String todotitle, String todocontent) throws UnsupportedEncodingException {
 	  String title;
 	  title = new String(todotitle.getBytes("iso-8859-1"),"euc-kr");
 	  String content;
 	  content = new String(todocontent.getBytes("iso-8859-1"),"euc-kr");
-	 String SQL = "UPDATE TODOLIST SET todotitle = ?, todocontent = ? WHERE  todoID = ? ";
+	  String todo;
+	  todo = new String(todos.getBytes("iso-8859-1"),"euc-kr");
+	 String SQL = "UPDATE TODOLIST SET todotitle = ?, todo = ?,  todocontent = ?WHERE  todoID = ? ";
 
   	try {
 	       PreparedStatement pstmt = conn.prepareStatement(SQL);
            pstmt.setString(1, title);
-           pstmt.setString(2, content);
-	       pstmt.setInt(3, todoID);
+           pstmt.setString(2, todo);
+           pstmt.setString(3, content);
+	       pstmt.setInt(4, todoID);
 	       return pstmt.executeUpdate();
 	    } catch (Exception e) {
 	        e.printStackTrace();
