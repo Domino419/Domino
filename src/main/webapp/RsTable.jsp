@@ -99,49 +99,20 @@
             </nav>
     <div class="container">
         <div class="row">
-            <table class="table table-striped" style="text-align:center; border:1px solid #dddddd">
+            <table class="table table-striped" style="; border:3px solid #dddddd">
                 <thead>
                     <tr>
-                        <th style="background-color:#eeeeee; text-align:center;">번호</th>
-                        <th style="background-color:#eeeeee; text-align:center;">제목</th>
-                        <th style="background-color:#eeeeee; text-align:center;">작성자</th>
-                        <th style="background-color:#eeeeee; text-align:center;">작성일</th>
+                      <th>   <a href="Sorrypage.jsp"  class="btn btn-success">자료실 입장</a></th>
+                      <th>   <a href="fileupload_cos_1.jsp"  class="btn btn-primary pull-right">파일 한개씩 업로드</a></th>
+                      <th>   <a href="fileupload_cos_2.jsp"  class="btn btn-primary pull-right">파일 3개씩 업로드</a></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <%
-                    BbsDAO bbsDAO = new BbsDAO();
-                    ArrayList<BBS> list = bbsDAO.getList(pageNumber);
-                    //ArrayList<BBS> list = bbsDAO.getList();
-                    for(int i = 0; i < list.size(); i++)
-                    { 
-                    %>
-                
-                    <tr>
-                        <td><%=list.get(i).getBbsid() %></td>
-                        <td><a href="view.jsp?Bbsid=<%=list.get(i).getBbsid()%>"><%=list.get(i).getBbstitle() %></a></td>
-                        <td><%=list.get(i).getUserID() %></td>
-                        <td><%=list.get(i).getBbsdate() %></td>
-                    </tr>
-                <%
-                    }
-                %>
                 </tbody>
             </table>
-            <%
-                if(pageNumber != 1) {
-            %>
-                <a href="bbs.jsp?pageNumber=<%=pageNumber - 1 %>" class="btn btn-success btn-arrow-left">이전</a>
-            <%
-                } 
-               if (bbsDAO.nextPage(pageNumber + 1)) {
-            %>
-                <a href="bbs.jsp?pageNumber=<%=pageNumber + 1 %>" class="btn btn-success btn-arrow-left">다음</a>
-            <%
-                } %>
-           <a href="write.jsp" class="btn btn-primary pull-right">글쓰기</a>
         </div>
     </div>
+    
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="js/bootstrap.js"></script>
 </body>
