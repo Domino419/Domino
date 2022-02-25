@@ -300,7 +300,7 @@ td {
   buildCalendar();  
 </script>
   
-    <div class="container">
+ <%--    <div class="container">
         <div class="row">
             <table class="table table-striped" style="text-align:center; border:1px solid #dddddd">
                 <thead>
@@ -331,7 +331,7 @@ td {
                         <td><%=list.get(i).getMemoContents() %></td>
                 <%
                     }
-                %>
+                %> --%>
                 </tbody>
             </table>
 </body>
