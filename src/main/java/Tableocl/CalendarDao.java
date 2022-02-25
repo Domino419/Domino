@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 
 public class CalendarDao {
@@ -47,5 +48,26 @@ public class CalendarDao {
 		}
 	
 	
-}
-
+	     public ArrayList<Calendar> getList()    
+	     {
+	     String SQL = "SELECT MEMOYEAR,MEMOMONTH, MEMODAY, MEMOCONTENTS FROM CALENDARMEMO; ";
+	     ArrayList<Calendar> list = new ArrayList<Calendar>();
+	     try {
+	         PreparedStatement pstmt = conn.prepareStatement(SQL);  
+	     /*    pstmt.setInt(1, (pageNumber - 1 ) * 10 + 1);
+	         pstmt.setInt(2, (pageNumber - 1 ) * 10 + 10);*/
+	         rs = pstmt.executeQuery();
+	         while (rs.next()) {
+	        	 Calendar Calendar = new Calendar();
+	             Calendar.setMemoYear(rs.getString(1));
+	             Calendar.setMemoMonth(rs.getString(2));
+	             Calendar.setMemoDay(rs.getString(3));
+	             Calendar.setMemoContents(rs.getString(4));
+	             list.add(Calendar);
+	         }
+	     } catch (Exception e) {
+	         e.printStackTrace();
+	     }
+	     return list; 
+	 }
+}     
