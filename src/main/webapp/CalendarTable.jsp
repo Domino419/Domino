@@ -1,23 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter" %>
-
+<%@ page import="Todo.TodoDao" %>
+<%@ page import="Todo.TodoDto" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="Tableocl.CalendarDao" %>
 <%@ page import="Tableocl.Calendar" %>
 
 <!DOCTYPE html>
 <html>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width" initial-scale="1" > 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" name="viewport" content="width=device-width" initial-scale="1"  >
 <link rel="stylesheet" href="css/bootstrap.css">
 <title>JSP 게시판 웹 사이트</title>
 <style type = "text/css">
     a, a:hover
-    {
         color: #000000;
         text-decoration: none;
-    }
+td {
+
+	width: 50px;
+	height: 50px;
+	text-align: center;
+	font-size: 20px;
+	font-family: 굴림;
+	border: 2px border-color:#3333FF;
+	border : 8px; /*모서리 둥글게*/
+}
 </style>
 </head>
 <body>
@@ -50,8 +58,8 @@
                 <li><a href="bbs.jsp">게시판</a></li>
                 <li class="active"><a href="CalendarTable.jsp">달력</a></li>
                 <li><a href="InsaTable.jsp">인사관리</a></li>
-                <li><a href="RsTable.jsp">성과관리</a></li>
-                <li><a href="DsbTable.jsp">자재관리</a></li>
+                <li><a href="RsTable.jsp">자료실</a></li>
+                <li><a href="DsbTable.jsp">도서관리</a></li>
                   <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
                         <a href="#" class = "dropdown-toggle"
@@ -64,9 +72,7 @@
                         </li>
                     </ul>
             </ul>
-            
-            
-            
+
             <%
                 if(userID == null)
                 {
@@ -102,57 +108,32 @@
     </nav>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="js/bootstrap.js"></script>
-</body>
-
-<head>
-<title>달력</title>
-<style type="text/css">
-td {
-	width: 50px;
-	height: 50px;
-	text-align: center;
-	font-size: 20px;
-	font-family: 굴림;
-	border: 2px border-color:#3333FF;
-	border-radius: 8px; /*모서리 둥글게*/
-}
-</style>
-<script type="text/javascript">
+	<script type="text/javascript">
         var today = new Date();
-	var date = new Date();
+	    var date = new Date();
 	function prevCalendar() {
-		today = new Date(today.getFullYear(), today.getMonth() - 1, today
-				.getDate());
+		today = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate());
 		buildCalendar(); 
 	}
 	function nextCalendar() {
-		today = new Date(today.getFullYear(), today.getMonth() + 1, today
-				.getDate());
+		today = new Date(today.getFullYear(), today.getMonth() + 1, today.getDate());
 		buildCalendar();//
 	}
 	function buildCalendar() {
 		var doMonth = new Date(today.getFullYear(), today.getMonth(), 1);
-		
 		var lastDate = new Date(today.getFullYear(), today.getMonth() + 1, 0);
-		
 		var tbCalendar = document.getElementById("calendar");
-		
 		var tbCalendarYM = document.getElementById("tbCalendarYM");
-		
 		tbCalendarYM.innerHTML = today.getFullYear() + "년 "
 				+ (today.getMonth() + 1) + "월";
 		/*while은 이번달이 끝나면 다음달로 넘겨주는 역할*/
 		while (tbCalendar.rows.length > 2) {
-			
 			tbCalendar.deleteRow(tbCalendar.rows.length - 1);
-			
 		}
 		var row = null;
 		row = tbCalendar.insertRow();
-		
 		var cnt = 0;// count, 셀의 갯수를 세어서 1일 시작되는 칸 맞춰줌 
 		for (i = 0; i < doMonth.getDay(); i++) {   /*이번달의 day만큼*/
-			
 			cell = row.insertCell();
 			cnt = cnt + 1;
 		}
@@ -183,11 +164,8 @@ td {
 			}
 		}
 	}
-	
 </script>
-</head>
-<head>
-    <title>달력</title>
+
     <style type="text/css">
         td{
             width: 50px;
@@ -261,8 +239,8 @@ td {
              }
         }
     </script>
-</head>
-<body>
+
+
     <p></p>
     <h3 align="center"></h3>
     <element>
@@ -321,6 +299,7 @@ td {
     <script language="javascript" type="text/javascript">
   buildCalendar();  
 </script>
+  
     <div class="container">
         <div class="row">
             <table class="table table-striped" style="text-align:center; border:1px solid #dddddd">
@@ -333,21 +312,23 @@ td {
                     </tr>
                 </thead>
                 <tbody>
-                    <%
-                    CalendarDao CalendarDao = new CalendarDao();
-                    ArrayList<Calendar> list = CalendarDao.getList();
+  <%
+                   // TodoDao TodoDao = new TodoDao();
+                    
+                    CalendarDao calendarDao = new CalendarDao() ;
+                    ArrayList<Calendar> list =calendarDao.getList();
+  
+                 //   ArrayList<Calendar> list = TodoDao.getList(pageNumber);
+                    
                     for(int i = 0; i < list.size(); i++)
                     { 
                     %>
                 
-                
-                
                     <tr>
-                        <td><%=list.get(1).getMemoYear() %></td>
-                        <td><%=list.get(i).getMemoMonth() %></td> 
+                    	<td><%=list.get(i).getMemoYear() %></td>
+                        <td><%=list.get(i).getMemoMonth()%></td>
                         <td><%=list.get(i).getMemoDay() %></td>
                         <td><%=list.get(i).getMemoContents() %></td>
-                    </tr>
                 <%
                     }
                 %>
