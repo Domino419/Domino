@@ -30,6 +30,11 @@
     {
         pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
     }
+    
+	String field_ = request.getParameter("f");
+	String query_ = request.getParameter("q");
+
+    
 %>
 
     <nav class ="navbar navbar-default">
@@ -111,7 +116,7 @@
                   <tbody>
                     <%
                     BbsDAO bbsDAO = new BbsDAO();
-                    ArrayList<BBS> list = bbsDAO.getList(pageNumber);
+                    ArrayList<BBS> list = bbsDAO.getList1(field_,query_,pageNumber);
                     //ArrayList<BBS> list = bbsDAO.getList();
                     for(int i = 0; i < list.size(); i++)
                     { 
@@ -127,21 +132,32 @@
                     }
                 %>
                 </tbody>
-			  	<div class="container">
+                
+                
+        <div class="container">
+    
 					<div class="row">
-						<form method="post" name="search" action="searchbbs.jsp">
+						
 							<div class="alert alert-info">
 					         <strong>운영.개발 구분용 line </strong></div>
+			<form>
+				<fieldset>
+                 <!--    <legend>글 검색 필드</legend>      -->               
+                    <label>검색분류</label>
+                        <select name = "f">
+                            <option ${(param.f == "bbstitle")? "selected" : ""} value = "bbstitle">제목</option>
+                            <option ${(param.f == "userid")? "selected" : ""} value = "userid">작성자</option>
+                        </select>
+                    <label>검색어</label>
+                        <input type = "text" name = "q" value = "${param.q}"/>
+                        <input type = "submit" value = "검색">                
+                </fieldset>        
+			
+				
+			</form>	
+		</div>	
+			  	<div class="container">
 							<table class="pull-right">
-								<tr>
-									<td><select class="form-control" name="searchField">
-											<option value="0">선택</option>
-											<option value="bbsTitle">제목</option>
-											<option value="userID">작성자</option>
-									</select></td>
-									<td><input type="text" class="form-control"
-										placeholder="검색어 입력" name="searchText" maxlength="100"></td>
-									<td><button type="submit" class="btn btn-success">검색</button></td>
 									<a href="write.jsp" class="btn btn-primary pull-right">글쓰기</a>
 									
 								</tr>
