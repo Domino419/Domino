@@ -16,35 +16,24 @@
 <body>
 <!-- 
 <pre>
-
 <script type="text/javascript">
-
 var name = location.search;
-
 var arr = name.split('&');
-
 for(var i=0; i<arr.length; i++){
-
 // 	alert(arr[i]+"\n");
-
 	document.writeln(arr[i]);
-
 }
-
 </script>
 </pre>
  -->
 
 <% request.setCharacterEncoding("UTF-8"); %>    
 
-
-
 <%
     String userID = null;
     if (session.getAttribute("userID") != null) {
     	userID = (String) session.getAttribute("userID");
     }
-
     if (userID == null) {
     	PrintWriter script = response.getWriter();
     	script.println("<script>");
@@ -52,18 +41,13 @@ for(var i=0; i<arr.length; i++){
     	script.println("location.href = 'login.jsp'");
     	script.println("</script>");
     }
-
-
     %>
-
-    
     <%
     
     int todoID = 0;
     if (request.getParameter("todoID") != null) {
     	todoID = Integer.parseInt(request.getParameter("todoID"));
     }
-    
     if (todoID == 0) {
     	PrintWriter script = response.getWriter();
     	script.println("<script>");
@@ -71,7 +55,6 @@ for(var i=0; i<arr.length; i++){
     	script.println("location.href = 'Todo.jsp'");
     	script.println("</script>");
     }
-    
     TodoDto tododto; 
     tododto = new TodoDao().gettodo(todoID);
     
@@ -137,8 +120,7 @@ for(var i=0; i<arr.length; i++){
                 </tbody>
             </table>
                 <input type="submit"  class="btn btn-primary pull-right" value="글수정">
-             
-              
+<%--   <a href="TododeleteAction.jsp?todoID=<%=(Integer.parseInt(request.getParameter("todoid")))%>" class="btn btn-primary">삭제</a> --%>             
             </form>
         </div>
     </div>

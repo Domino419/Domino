@@ -126,7 +126,8 @@
                 {
             %>
                 <a href="update.jsp?bbsID=<%=(Integer.parseInt(request.getParameter("Bbsid")))%>" class="btn btn-primary">수정</a>
-                <a href="deleteAction.jsp?bbsID=<%=(Integer.parseInt(request.getParameter("Bbsid")))%>" class="btn btn-primary">삭제</a>
+              <%--   <a href="deleteAction.jsp?bbsID=<%=(Integer.parseInt(request.getParameter("Bbsid")))%>" class="btn btn-primary">삭제</a> --%>
+                <a href="deleteAction.jsp?bbsID=<%=(Integer.parseInt(request.getParameter("Bbsid")))%>" class="btn btn-primary" onclick="return confirm('진짜 삭제해도 될까요?');">삭제</a>
                 
             <%     
                 }

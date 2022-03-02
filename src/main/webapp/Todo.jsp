@@ -31,8 +31,17 @@
     {
         pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
     }
+    
 %>
-
+<!-- <script type="text/javascript">
+function button_event(){
+if (confirm("정말 삭제하시겠습니까??") == true){    //확인
+    document.form.submit();
+}else{   //취소
+    return;
+}
+}
+</script> -->
     <nav class ="navbar navbar-default">
         <div class="navbar-header"> <!-- 홈페이지의 로고 -->
             <button type="button" class="navbar-toggle collapsed"
@@ -102,10 +111,8 @@
             <div class="btn-group">
           <button onclick="window.open('TodoWrite.jsp','Todo','width=430,height=500,location=no,status=no,scrollbars=yes');" class="btn btn-success btn-arrow-center">할일 추가</button> </div>
           <button onclick="window.open('popup1.jsp','칸반보드');" class="btn btn-success btn-arrow-center">칸반보드 (To do list 연동 전 탬플릿만)</button> </div>
-      
          <div>
          </div>
-          
 	<div class="container">
         <div class="row">
             <table class="table table-striped" style="text-align:center; border:1px solid #dddddd">
@@ -116,6 +123,7 @@
                         <th style="background-color:#eeeeee; text-align:center;">접수구분</th>
                         <th style="background-color:#eeeeee; text-align:center;">내용</th>
                         <th style="background-color:#eeeeee; text-align:center;">접수일</th>
+                        <th style="background-color:#eeeeee; text-align:center;">삭제</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -135,8 +143,7 @@
                         <td><a href="TodoUpdate.jsp?todoID=<%=list.get(i).getTodoid()%>"><%=list.get(i).getTodotitle() %></a></td>
                         <td><a href="TodoUpdate.jsp?todoID=<%=list.get(i).getTodoid()%>"><%=list.get(i).getTodocontent() %></a></td>
                         <td><a href="TodoUpdate.jsp?todoID=<%=list.get(i).getTodoid()%>"><%=list.get(i).getTododata() %></a></td>
-                        <%-- <td><%=list.get(i).getUserid() %></td>
-                             <td><%=list.get(i).getTododata() %></td> --%>
+                        <td><a href="TododeleteAction.jsp?todoID=<%=list.get(i).getTodoid()%>" onclick="return confirm('진짜 삭제해도 될까요?');">삭제</a>
                     </tr>
                 <%
                     }
@@ -155,14 +162,6 @@
                 <a href="Todo.jsp?pageNumber=<%=pageNumber + 1 %>" class="btn btn-success btn-arrow-left">다음</a>
             <%
                 } %>
-           
-               <!--  <div align="center" >
-                <button onclick="window.open('TodoWrite.jsp','Todo','width=430,height=500,location=no,status=no,scrollbars=yes');" class="btn btn-success btn-arrow-center">할일 추가</button> </div> -->
-      
-		      <!--  <br><a href="#"  onclick="window.open('Sorrypage.jsp','window팝업','width=300, height=300, menubar=no, status=yes, toolbar=yes');">일정 추가하기(2미구현) </a><br> 
-
-		 <a href="Todowrite.jsp" class="btn btn-primary pull-right">일정 추가하기</a> 
-		  <button onclick="Todowrite.jsp" class="btn btn-primary pull-right">일정 추가하기</a>  --> 
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="js/bootstrap.js"></script>
 </body>
