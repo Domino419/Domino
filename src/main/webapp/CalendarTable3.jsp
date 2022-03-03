@@ -104,10 +104,10 @@ td {
             <%
                 }
             %>
+  
         </div>
     </nav>
     <h3 align="center"></h3>
-    <element>
     	<table id="calendar" border="3" align="center"
     		style="border-color:#3333FF ">
     		<tr><!-- label은 마우스로 클릭을 편하게 해줌 -->
@@ -128,5 +128,13 @@ td {
     				</form>
                 </tbody>
             </table>
+             <h3 align="center"></h3>
+            <table id="calendar" border="3" align="center" style="border-color:#3333FF ">
+    			<center>
+                      <p> 요기서부서 </p>
+            </table>
+            
+            
+            
 </body>
 </html>

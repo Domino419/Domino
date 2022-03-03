@@ -33,9 +33,10 @@
 <link rel="stylesheet" href="css/bootstrap.css">
 
 <head>
+	<center>
 <title>부서별 근무 비중 확인  </title>
 </head>
-
+   
 <body>
     <%  // 
 	String userID = null;
@@ -104,11 +105,11 @@
 		}
 		%>
 	</table>
-	  <h6> ※ 재직자수 : 재직중인 사람 </h6>
-	  <h6> ※ 근무자수 : 연차/반차 미사용자 (=정상근무자) </h6>
-	  <h6> ※ 근무비증 : 재직자 중 정상근무한 사원의 비중 </h6>
-	  <h6> ※ 특정 날짜(21/12/08) 기준으로 집계함  </h6>
-	  
+	<h6>  <p align="left">※ 재직자수 : 재직중인 사람</p></h6>
+	<h6>  <p align="left">※ 근무자수 : 연차/반차 미사용자 (=정상근무자)</p></h6>
+	<h6>  <p align="left">※ 근무비증 : 재직자 중 정상근무한 사원의 비중 </p></h6>
+	<h6>  <p align="left">※ 특정 날짜(21/12/08) 기준으로 집계함</p></h6>
+
 			<div class="container"> </div>
 				<div class="row"></div>
 					<div class="col text-center"></div> 
