@@ -32,6 +32,10 @@
         pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
     }
     
+    
+	String to_ = request.getParameter("to");
+	if(to_ == null)
+		to_ = "";     //파라미터 캐치하는 부분 
 %>
 <!-- <script type="text/javascript">
 function button_event(){
@@ -108,11 +112,35 @@ if (confirm("정말 삭제하시겠습니까??") == true){    //확인
                 </div>
             </nav>
             <div align="center" >
-            <div class="btn-group">
-          <button onclick="window.open('TodoWrite.jsp','Todo','width=430,height=500,location=no,status=no,scrollbars=yes');" class="btn btn-success btn-arrow-center">할일 추가</button> </div>
-          <button onclick="window.open('popup1.jsp','칸반보드');" class="btn btn-success btn-arrow-center">칸반보드 (To do list 연동 전 탬플릿만)</button> </div>
+           <!--    <div class="btn-group"></div> --> 
+          <button onclick="window.open('TodoWrite.jsp','Todo','width=430,height=500,location=no,status=no,scrollbars=yes');" class="btn btn-info btn-arrow-center">할일 추가</button> </div>
+       <!--    <button onclick="window.open('popup1.jsp','칸반보드');" class="btn btn-success btn-arrow-center">칸반보드 (To do list 연동 전 탬플릿만)</button> </div> --> 
          <div>
          </div>
+         <div class="container">
+					<div class="row">
+						<!-- 	<div class="alert alert-info">
+					         <strong>운영.개발 구분용 line </strong></div> -->
+			<form>
+				<fieldset>
+                 <!--    <legend>글 검색 필드</legend>      -->               
+                   <label>진행상태</label>
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"  name = "to" >
+						<option ${(param.to == "todo")?  "selected" : ""} value=""><%=to_ %></option>
+						<option ${(param.to == "todo")?  "selected" : ""} value="할당">할당</option>
+						<!-- <option ${(param.to == "todo")? "selected" : ""} value="가접수">가접수</option> -->
+						<option ${(param.to == "todo")?  "selected" : ""} value="접수">접수</option>
+						<option ${(param.to == "todo")?  "selected" : ""} value="완료">완료</option>
+						<option ${(param.to == "todo")?  "selected" : ""} value="취소">취소</option>
+						<option ${(param.to == "todo")?  "selected" : ""} value="불가">불가</option>
+						<option ${(param.to == "todo")?  "selected" : ""} value="">전체</option>
+					</select>
+                  <!--  <label>검색어</label> -->  
+                   <!--    <input type = "text" name = "state"  value = "${param.to}"/>-->   
+                        <input type = "submit"  value = "조회">   <!-- 드롭다운 메뉴에서 선택 후 sumit -->
+                </fieldset>        
+			</form>	
+		</div>	
 	<div class="container">
         <div class="row">
             <table class="table table-striped" style="text-align:center; border:1px solid #dddddd">
@@ -130,7 +158,7 @@ if (confirm("정말 삭제하시겠습니까??") == true){    //확인
                 
                     <%
                     TodoDao TodoDao = new TodoDao();
-                    ArrayList<TodoDto> list = TodoDao.getList(pageNumber);
+                    ArrayList<TodoDto> list = TodoDao.getList(to_, pageNumber);
                     //ArrayList<BBS> list = bbsDAO.getList();
                     for(int i = 0; i < list.size(); i++)
                     { 

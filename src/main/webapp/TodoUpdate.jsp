@@ -111,25 +111,34 @@ for(var i=0; i<arr.length; i++){
                    <td><input type="text" readonly  class="form-control" placeholder="아이디"  name="todoid" maxlength="50" value = "<%=tododto.getTodoid() %>"></td> 
                     </tr>
                     <tr>
-                     <td><input type="text" class="form-control" placeholder="작업상태"  name="todos" maxlength="50" value = "<%=tododto.getTodo() %>"></td>
+                     <td>
+                  <%--     <input type="text" class="form-control" placeholder="작업상태"  name="todos" maxlength="50" value = "<%=tododto.getTodo() %>"></td> --%>
+                     	<div class="form-group" style="text-align: center;">
+							<label class="btn btn-primary active"> 
+							<input type="radio" name="todos" autocomplete="off" value = "가접수" checked>가접수 </label> 
+							<label class="btn btn-primary">
+							<input type="radio" name="todos" autocomplete="off" value = "접수" checked>접수 </label>
+							<label class="btn btn-primary">
+							<input type="radio" name="todos" autocomplete="off" value = "할당" checked>할당 </label>
+							<label class="btn btn-primary">
+							<input type="radio" name="todos" autocomplete="off" value = "완료" checked>완료 </label>
+							<label class="btn btn-primary">
+							<input type="radio" name="todos" autocomplete="off" value = "취소" checked>취소 </label>
+							<label class="btn btn-primary">
+							<input type="radio" name="todos" autocomplete="off" value = "불가" checked>불가 </label>
                     <tr>
                     <td><input type="text" class="form-control" placeholder="글 제목"  name="todotitle" maxlength="50" value = "<%=tododto.getTodotitle() %>"></td>
                     </tr>
                     <td><textarea class="form-control" placeholder="글 내용"  name="todocontent" maxlength="2048" style="height:350px;"><%=tododto.getTodocontent()%></textarea></td>
                     </tr>
-                </tbody>
-            </table>
-                <input type="submit"  class="btn btn-primary pull-right" value="글수정">
-<%--   <a href="TododeleteAction.jsp?todoID=<%=(Integer.parseInt(request.getParameter("todoid")))%>" class="btn btn-primary">삭제</a> --%>             
+					</tbody>
+					  </table>
+					  <div class="text-center">
+					<input type="submit"   class="btn btn-primary pull" value="글수정" >    </div>
             </form>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="js/bootstrap.js"></script>
-</body>
-</html>
-
-
-
 </body>
 </html>

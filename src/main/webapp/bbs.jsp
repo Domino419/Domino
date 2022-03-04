@@ -132,10 +132,7 @@
                     }
                 %>
                 </tbody>
-                
-                
         <div class="container">
-    
 					<div class="row">
 						
 							<div class="alert alert-info">
@@ -144,22 +141,19 @@
 				<fieldset>
                  <!--    <legend>글 검색 필드</legend>      -->               
                     <label>검색분류</label>
-                        <select name = "f">
-                            <option ${(param.f == "bbstitle")? "selected" : ""} value = "bbstitle">제목</option>
-                            <option ${(param.f == "userid")? "selected" : ""} value = "userid">작성자</option>
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"  name = "f" >
+                            <option ${(param.f == "bbstitle")? "selected" : ""} value = "bbstitle">제목</option>  
+                            <option ${(param.f == "userid")? "selected" : ""} value = "userid)">작성자</option>
                         </select>
                     <label>검색어</label>
-                        <input type = "text" name = "q" value = "${param.q}"/>
-                        <input type = "submit" value = "검색">                
+                        <input type = "text" name = "q"  value = "${param.q}"/>
+                        <input type = "submit"  value = "검색">                
                 </fieldset>        
-			
-				
 			</form>	
 		</div>	
 			  	<div class="container">
 							<table class="pull-right">
 									<a href="write.jsp" class="btn btn-primary pull-right">글쓰기</a>
-									
 								</tr>
 							</table>
 
