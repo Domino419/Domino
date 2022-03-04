@@ -110,10 +110,12 @@
 	<h6>  <p align="left">※ 근무비증 : 재직자 중 정상근무한 사원의 비중 </p></h6>
 	<h6>  <p align="left">※ 특정 날짜(21/12/08) 기준으로 집계함</p></h6>
 
-			<div class="container"> </div>
-				<div class="row"></div>
-					<div class="col text-center"></div> 
-						<input type="button" button class="btn btn-default" style="" value="창닫기" onclick="window.close();"></body>
+			<div class="container">
+				<div class="row">
+					<div class="col text-center" style="text-align:center"> 
+						<input type="button" button class="btn btn-default"  value="창닫기" onclick="window.close();">
+						</div></div> </div>
+						</body>
 				
 					
 </html>

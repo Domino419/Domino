@@ -11,17 +11,18 @@
 	String pwd = "pass";
 	String url = "jdbc:oracle:thin:@localhost:1521:XE";
 	
-	String sql = "select * from INSAMAIN";%>
+	String sql = "select NUM, Substr(NAME,1,1)||lpad('*',length(NAME)-2,'*')||Substr(NAME,length(name),1), to_DATE(INDATE,'YYYY/MM/DD'), To_DATE(OUTDATE,'YYYY/MM/DD'), DEPT1, DEPT2 FROM INSAMAIN";%>
 	
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Select * from insamain </title>
+<title>사원 명부(더미데이터)</title>
 
 </head>
 <body>
-  <input type="button" value="새창" onclick="window.open('popup1.jsp', '팝업창 이름', 'width=#, height=#')"> 
+ <!--  - <input type="button" value="새창" onclick="window.open('popup1.jsp', '팝업창 이름', 'width=#, height=#')">  --> 
+  <!--  <button onclick="history.back()">뒤로 돌아가기</button> -->  
     <%  // 
 	String userID = null;
 	if (session.getAttribute("userID") != null) {
@@ -33,9 +34,9 @@
 		stmt = conn.createStatement();		// 쿼리 생성
 		rs = stmt.executeQuery(sql);
 	%>
+	<center>
+	 <H4>사원 명부(더미데이터)</H4>
 	
-	<table border="1">
-	 <td>날짜에서 시간을 빼고 보여주도록 수식 수정예정 - 220202</td>
 	<table border="1">
 		<tr>
 			<td>사번</td>
@@ -51,34 +52,41 @@
 		<tr>
 			<td><%=rs.getString(1)%></td>
 			<td><%=rs.getString(2)%></td>
-			<td><%=rs.getString(3)%></td>
-			<td><%=rs.getString(4)%></td>
+			<td><%=rs.getString(3).substring(0, 9)%></td>
+			<td><%=rs.getString(4).substring(0, 9)%></td>
 			<td><%=rs.getString(5)%></td>
 			<td><%=rs.getString(6)%></td>
 		</tr>
+
+
+			<%
+			}
+			} catch (Exception e) {
+			e.printStackTrace();
+			} finally {
+			try {
+			if (rs != null) {
+				rs.close();
+			}
+			if (stmt != null) {
+				stmt.close();
+			}
+			if (conn != null) {
+				conn.close();
+			}
+			} catch (Exception e) {
+			e.printStackTrace();
+			}
+			}
+			%>
+		</table>
 	
-
-	<%
-
-		}
-		} catch (Exception e) {
-		e.printStackTrace();
-		} finally {
-		try {
-		if (rs != null) {
-			rs.close();
-		}
-		if (stmt != null) {
-			stmt.close();
-		}
-		if (conn != null) {
-			conn.close();
-		}
-		} catch (Exception e) {
-		e.printStackTrace();
-		}
-		}
-		%>
-	</table>
-</body>
+			<div class="container">
+				<div class="row">
+					<div class="col text-center" style="text-align:center"> 
+						<input type="button" button class="btn btn-default"  value="창닫기" onclick="window.close();">
+						</div></div> </div>
+						</body>
+				
+							
 </html>
