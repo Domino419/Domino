@@ -8,6 +8,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import BBS.BBS;
+
 public class TodoDao {
 
   Connection conn = null;       //JDBC 설정 연결하기  
@@ -76,16 +78,25 @@ public int write(String todoTitle, String userID, String todoContent) {
     }
     return -1; // 데이터베이스 오류
 }
-     public ArrayList<TodoDto> getList(int pageNumber)    
+     public ArrayList<TodoDto> getList(String to_,int pageNumber) throws UnsupportedEncodingException    
     {
+    	 
+    		String to = "";
+    		if(to_ != null && !to_.equals(""))
+    			to = to_;   // view 페이지에서 던진 값을 여기서 받음 
+    	 
+         //to = new String(to.getBytes("iso-8859-1"),"euc-kr");
+         
     String SQL = "     SELECT * FROM"
-    		+ "    		(SELECT A.*, RANK() OVER(ORDER BY TODOID DESC) RNUM FROM TODOLIST A WHERE todoavailable = 1) "
+    		+ "    		(SELECT A.*, RANK() OVER(ORDER BY TODOID DESC) RNUM FROM TODOLIST A WHERE todoavailable = 1"
+    		+ "			AND TODO like ? ) "
     		+ "    		WHERE RNUM >= ? AND RNUM <= ? ";
     ArrayList<TodoDto> list = new ArrayList<TodoDto>();
     try {
-        PreparedStatement pstmt = conn.prepareStatement(SQL);  
-        pstmt.setInt(1, (pageNumber - 1 ) * 10 + 1);
-        pstmt.setInt(2, (pageNumber - 1 ) * 10 + 10);
+        PreparedStatement pstmt = conn.prepareStatement(SQL);
+        pstmt.setString(1, "%"+to+"%");
+        pstmt.setInt(2, (pageNumber - 1 ) * 10 + 1);
+        pstmt.setInt(3, (pageNumber - 1 ) * 10 + 10);
         rs = pstmt.executeQuery();
         while (rs.next()) {
             TodoDto tododto = new TodoDto();
@@ -214,6 +225,48 @@ public int complete(int todoID)
         e.printStackTrace();
     }
     return -1; // 데이터베이스 오류
+}
+
+public ArrayList<TodoDto> getList1(String field_, String query_, int page) {
+	
+	String field = "todo";
+	if(field_ != null && !field_.equals(""))
+		field = field_;
+	
+	String query = "";
+	if(query_ != null && !query_.equals(""))
+		query = query_;
+	
+	
+	ArrayList<TodoDto> list= new ArrayList<TodoDto>();		
+	
+    String SQL = "     SELECT * FROM"
+    		+ "    		(SELECT A.*, RANK() OVER(ORDER BY TODOID DESC) RNUM FROM TODOLIST A WHERE todoavailable = 1"
+    		+ "			WHERE upper("+field+") IN upper(?)) " //조회필드
+    		+ "    		WHERE RNUM >= ? AND RNUM <= ? ";
+	
+	try {
+
+		PreparedStatement pstmt = conn.prepareStatement(SQL);
+		pstmt.setString(1, "%"+query+"%" ); //조회기준 
+        pstmt.setInt(2, (page - 1 ) * 10 + 1);
+        pstmt.setInt(3, (page - 1 ) * 10 + 10);
+		rs = pstmt.executeQuery();
+		
+		   while (rs.next()) {
+			   TodoDto tododto = new TodoDto();
+			   tododto.setTodoid(rs.getInt(1));
+			   tododto.setTodotitle(rs.getString(2));
+			   tododto.setUserid(rs.getString(3));
+			   tododto.setTododata(rs.getString(4));
+			   tododto.setTodocontent(rs.getString(5));
+			   tododto.setTodoavailable(rs.getString(6));
+		       list.add(tododto);
+		   }
+		} catch (Exception e) {
+		   e.printStackTrace();
+		}
+		return list; 
 }
 
 }
