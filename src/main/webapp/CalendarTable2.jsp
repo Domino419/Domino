@@ -106,6 +106,142 @@ td {
             %>
         </div>
     </nav>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+	<script type="text/javascript">
+        var today = new Date();
+	    var date = new Date();
+	function prevCalendar() {
+		today = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate());
+		buildCalendar(); 
+	}
+	function nextCalendar() {
+		today = new Date(today.getFullYear(), today.getMonth() + 1, today.getDate());
+		buildCalendar();//
+	}
+	function buildCalendar() {
+		var doMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+		var lastDate = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+		var tbCalendar = document.getElementById("calendar");
+		var tbCalendarYM = document.getElementById("tbCalendarYM");
+		tbCalendarYM.innerHTML = today.getFullYear() + "년 "
+				+ (today.getMonth() + 1) + "월";
+		/*while은 이번달이 끝나면 다음달로 넘겨주는 역할*/
+		while (tbCalendar.rows.length > 2) {
+			tbCalendar.deleteRow(tbCalendar.rows.length - 1);
+		}
+		var row = null;
+		row = tbCalendar.insertRow();
+		var cnt = 0;// count, 셀의 갯수를 세어서 1일 시작되는 칸 맞춰줌 
+		for (i = 0; i < doMonth.getDay(); i++) {   /*이번달의 day만큼*/
+			cell = row.insertCell();
+			cnt = cnt + 1;
+		}
+		/*달력 출력*/
+		for (i = 1; i <= lastDate.getDate(); i++) {    //1일부터 마지막 일까지 돌림
+			cell = row.insertCell();
+			cell.innerHTML = i;//셀을 1부터 마지막 day까지 HTML 문법에 넣어줌
+			cnt = cnt + 1;
+			if (cnt % 7 == 1) {/*일요일 계산*/
+				//1주일이 7일 이므로 일요일 구하기
+				//월화수목금토일을 7로 나눴을때 나머지가 1이면 cnt가 1번째에 위치함을 의미한다
+				cell.innerHTML = "<font color=#F79DC2>" + i
+				//1번째의 cell에만 색칠
+			}
+			if (cnt % 7 == 0) {/* 1주일이 7일 이므로 토요일 구하기*/
+				//월화수목금토일을 7로 나눴을때 나머지가 0이면 cnt가 7번째에 위치함을 의미한다
+				cell.innerHTML = "<font color=skyblue>" + i
+				//7번째의 cell에만 색칠
+				row = calendar.insertRow();
+				//토요일 다음에 올 셀을 추가
+			}
+			/*오늘의 날짜에 노란색 칠하기*/
+			if (today.getFullYear() == date.getFullYear()
+					&& today.getMonth() == date.getMonth()
+					&& i == date.getDate()) {
+				//달력에 있는 년,달과 내 컴퓨터의 로컬 년,달이 같고, 일이 오늘의 일과 같으면
+				cell.bgColor = "#FAF58C";//셀의 배경색을 노랑으로 
+			}
+		}
+	}
+</script>
+
+    <style type="text/css">
+        td{
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            font-size: 20px;
+            font-family: 굴림;
+            border:2px border-color:#3333FF;
+            border-radius: 8px;/*모서리 둥글게*/
+        }
+    </style>
+<script type="text/javascript">
+        var today = new Date();
+        var date = new Date();
+        function prevCalendar() {
+         today = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate());
+         buildCalendar(); //달력 cell 만들어 출력 
+        }
+ 
+        function nextCalendar() {/
+             today = new Date(today.getFullYear(), today.getMonth() + 1, today.getDate());
+             buildCalendar();//달력 cell 만들어 출력
+        }
+        function buildCalendar(){//현재 달 달력 만들기
+            var doMonth = new Date(today.getFullYear(),today.getMonth(),1);
+          
+            var lastDate = new Date(today.getFullYear(),today.getMonth()+1,0);
+            
+            var tbCalendar = document.getElementById("calendar");
+            
+            var tbCalendarYM = document.getElementById("tbCalendarYM");
+         
+             tbCalendarYM.innerHTML = today.getFullYear() + "년 " + (today.getMonth() + 1) + "월"; 
+ 
+             /*while은 이번달이 끝나면 다음달로 넘겨주는 역할*/
+            while (tbCalendar.rows.length > 2) {
+           
+                  tbCalendar.deleteRow(tbCalendar.rows.length-1);
+                
+             }
+             var row = null;
+             row = tbCalendar.insertRow();
+             //테이블에 새로운 열 삽입//즉, 초기화
+             var cnt = 0;// count, 셀의 갯수를 세어주는 역할
+           
+             for (i=0; i<doMonth.getDay(); i++) {
+            
+                  cell = row.insertCell();
+                  cnt = cnt + 1;
+             }
+            /*달력 출력*/
+             for (i=1; i<=lastDate.getDate(); i++) { 
+            
+                  cell = row.insertCell();
+                  cell.innerHTML = i;//셀을 1부터 마지막 day까지 HTML 문법에 넣어줌
+                  cnt = cnt + 1;
+              if (cnt % 7 == 1) 
+                cell.innerHTML = "<font color=#F79DC2>" + i
+                
+            }    
+              if (cnt%7 == 0){
+                  cell.innerHTML = "<font color=skyblue>" + i  //7번째의 cell에만 색칠
+                   row = calendar.insertRow();      //토요일 다음에 올 셀을 추가
+              }
+              /*오늘의 날짜에 노란색 칠하기*/
+              if (today.getFullYear() == date.getFullYear()
+                 && today.getMonth() == date.getMonth()
+                 && i == date.getDate()) {
+                 cell.bgColor = "#FAF58C";   //셀의 배경색을 노랑으로 
+               }
+             }
+        }
+    </script>
+
+
+    <p></p>
     <h3 align="center"></h3>
     <element>
     	<table id="calendar" border="3" align="center"
@@ -114,7 +250,8 @@ td {
     			<center>
     				<H2>일정 추가</H2>
     				<H2></H2>
-    				<form name=memoAdd method=get action=CalendarAction.jsp>
+    				<form name=memoAdd method=get
+    					action=CalendarAction.jsp>
 <!--액션 태그 위치  -->
     					<input type=text name=memoYear size=4>
     					년
@@ -126,6 +263,75 @@ td {
     					<input type=submit value="추가">
     					<h2></h2>
     				</form>
+
+    				<td>
+    					<label onclick="prevCalendar()"> < </label>
+    					
+    				</td>
+    				<td align="center" id="tbCalendarYM" colspan="5">
+    					yyyy년 m월
+    				</td>
+
+    				<td>
+    					<label onclick="nextCalendar()">
+    						>
+
+    					</label>
+    				</td>
+    		</tr>
+    		<tr>
+    			<td align="center">
+    				<font color="#F79DC2">일
+    			</td>
+    			<td align="center">월</td>
+    			<td align="center">화</td>
+    			<td align="center">수</td>
+    			<td align="center">목</td>
+    			<td align="center">금</td>
+    			<td align="center">
+    				<font color="skyblue">토
+    			</td>
+    		</tr>
+
+
+    	</table>
+    </element>
+    <script language="javascript" type="text/javascript">
+  buildCalendar();  
+</script>
+  
+ <%--    <div class="container">
+        <div class="row">
+            <table class="table table-striped" style="text-align:center; border:1px solid #dddddd">
+                <thead>
+                    <tr>
+                        <th style="background-color:#eeeeee; text-align:center;">연</th>
+                        <th style="background-color:#eeeeee; text-align:center;">월</th>
+                        <th style="background-color:#eeeeee; text-align:center;">일</th>
+                        <th style="background-color:#eeeeee; text-align:center;">일정</th>
+                    </tr>
+                </thead>
+                <tbody>
+  <%
+                   // TodoDao TodoDao = new TodoDao();
+                    
+                    CalendarDao calendarDao = new CalendarDao() ;
+                    ArrayList<Calendar> list =calendarDao.getList();
+  
+                 //   ArrayList<Calendar> list = TodoDao.getList(pageNumber);
+                    
+                    for(int i = 0; i < list.size(); i++)
+                    { 
+                    %>
+                
+                    <tr>
+                    	<td><%=list.get(i).getMemoYear() %></td>
+                        <td><%=list.get(i).getMemoMonth()%></td>
+                        <td><%=list.get(i).getMemoDay() %></td>
+                        <td><%=list.get(i).getMemoContents() %></td>
+                <%
+                    }
+                %> --%>
                 </tbody>
             </table>
 </body>

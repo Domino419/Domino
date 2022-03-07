@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width" initial-scale="1" >  <!-- 반응형 웹에 사용하는 메타태그 -->
-<link rel="stylesheet" href="css/bootstrap.css"> <!-- 참조  -->
+<link rel="stylesheet" href="/css/bootstrap.js"> <!-- 참조  -->
 <title>My web site</title>
 </head>
 <body>
@@ -26,7 +26,8 @@
                 <span class ="icon-bar"></span>
                 <span class ="icon-bar"></span>
             </button>
-            <a class ="navbar-brand" href="main.jsp">JSP 게시판 웹 사이트</a>
+          
+            <a class ="navbar-brand" href="main.jsp">Domino4019</a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">   <!-- nav bat menu list  -->
             <ul class="nav navbar-nav">
@@ -34,8 +35,8 @@
                 <li><a href="bbs.jsp">게시판</a></li>
                 <li><a href="CalendarTable.jsp">달력</a></li>   <!-- 0122 메뉴 추가 -->
                 <li><a href="InsaTable.jsp">인사관리</a></li>
-                <li class="active"><a href="RsTable.jsp">성과관리</a></li>
-                <li><a href="DsbTable.jsp">자재관리</a></li>
+                <li><a href="RsTable.jsp">자료실</a></li>
+                <li><a href="DsbTable.jsp">도서관리</a></li>
                   <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
                         <a href="#" class = "dropdown-toggle"
@@ -89,6 +90,6 @@
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="js/bootstrap.js"></script>
+    <script src="/css/bootstrap.js"></script>
 </body>
 </html>
