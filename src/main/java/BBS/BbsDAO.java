@@ -190,35 +190,33 @@ public int delete(int bbsID)
   */
 
 
-public ArrayList<BBS> getSearch(String searchField, String searchText) throws UnsupportedEncodingException, SQLException  {// 특정한 리스트를 받아서 반환
-   
-	ArrayList<BBS> list = new ArrayList<BBS>();
-	
-	try {
-		if (searchText != null && !searchText.equals("")) {     //검색박스가 null이나 공란이 아니면 
-			String searchField1 = new String(searchField.getBytes("iso-8859-1"),"euc-kr");   //게시판 드롭박스 선택값 제목 or 작성자을 가져와서 search1로 선언
-		    String searchText1 = new String(searchText.getBytes("iso-8859-1"),"euc-kr");    // 게시판에서 검색필드에 입력한 값을 가져와서 search2로 선언
-			String SQL = "SELECT bbsid,bbstitle, userid, bbsdata, bbscontent FROM BBSJSP WHERE BBSAVAILABLE = 1 AND '%searchField1%' LIKE '%searchText1%'" ;
-		     
-			
-		Statement stmt = conn.createStatement();
-		rs = stmt.executeQuery(SQL);// 문장을 실행하고 결과를 리턴 받음  
-		
-		while (rs.next()) {     //Result set에 저장된 데이터 얻기 
-			//BBS getSearch = new BBS();
-			//list.
-			//String searchField1  = rs.getString(1); 
-			//String searchText1  = rs.getString(2); 
-
-			}
-	    	}	
-		}
-	finally {
-		rs.close();
-	}
-	return list;
-}
-
+/*
+ * public ArrayList<BBS> getSearch(String searchField, String searchText) throws
+ * UnsupportedEncodingException, SQLException {// 특정한 리스트를 받아서 반환
+ * 
+ * ArrayList<BBS> list = new ArrayList<BBS>();
+ * 
+ * try { if (searchText != null && !searchText.equals("")) { //검색박스가 null이나 공란이
+ * 아니면 String searchField1 = new String
+ * (searchField.getBytes("iso-8859-1"),"euc-kr"); //게시판 드롭박스 선택값 제목 or 작성자을 가져와서
+ * search1로 선언 // String searchField2 = searchField1.toUpperCase(); // 게시판에서
+ * 검색필드에 입력한 값을 가져와서 search2로 선언 String searchText1 = new
+ * String(searchText.getBytes("iso-8859-1"),"euc-kr"); //String searchText2 =
+ * searchText1.toUpperCase(); String SQL =
+ * "SELECT bbsid,bbstitle, userid, bbsdata, bbscontent FROM BBSJSP WHERE BBSAVAILABLE = 1 AND 'searchField2' LIKE '%searchText2%' "
+ * ;
+ * 
+ * 
+ * 
+ * Statement stmt = conn.createStatement(); rs = stmt.executeQuery(SQL);// 문장을
+ * 실행하고 결과를 리턴 받음
+ * 
+ * while (rs.next()) { //Result set에 저장된 데이터 얻기 //BBS getSearch = new BBS();
+ * //list. //String searchField1 = rs.getString(1); //String searchText1 =
+ * rs.getString(2);
+ * 
+ * } } } finally { rs.close(); } return list; }
+ */
 public ArrayList<BBS> getList1(String field_, String query_, int page) {
 	
 	String field = "bbstitle";
@@ -234,7 +232,7 @@ public ArrayList<BBS> getList1(String field_, String query_, int page) {
 	
     String SQL = "     SELECT * FROM"
     		+ "    		(SELECT A.*, RANK() OVER(ORDER BY BBSID DESC) RNUM FROM BBSJSP A WHERE bbsAvailable = 1"
-    		+ "			and "+field+" LIKE ?) " //조회필드
+    		+ "			and upper("+field+") LIKE upper(?))  "   //조회필드
     		+ "    		WHERE RNUM >= ? AND RNUM <= ? ";
 	
 	try {
