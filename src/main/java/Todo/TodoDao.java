@@ -94,7 +94,7 @@ public int write(String todoTitle, String userID, String todoContent) {
     ArrayList<TodoDto> list = new ArrayList<TodoDto>();
     try {
         PreparedStatement pstmt = conn.prepareStatement(SQL);
-        pstmt.setString(1, "%"+to+"%");
+        pstmt.setString(1, to+"%");
         pstmt.setInt(2, (pageNumber - 1 ) * 10 + 1);
         pstmt.setInt(3, (pageNumber - 1 ) * 10 + 10);
         rs = pstmt.executeQuery();
@@ -115,11 +115,17 @@ public int write(String todoTitle, String userID, String todoContent) {
     }
     return list; 
 }
-     public boolean nextPage(int pageNumber) {
-         String SQL = "SELECT * FROM TODOLIST WHERE todoavailable = 1 and TODOID < ? "; 
+     public boolean nextPage(String to_,int pageNumber) {
+    	 
+ 		String to = "";
+ 		if(to_ != null && !to_.equals(""))
+ 			to = to_;   // view 페이지에서 던진 값을 여기서 받음 
+    	 
+         String SQL = "SELECT * FROM TODOLIST WHERE todoavailable = 1 and TODOID < ? and TODO like ?  "; 
          try {
              PreparedStatement pstmt = conn.prepareStatement(SQL);
              pstmt.setInt(1, getNext() - (pageNumber - 1 ) * 10);
+             pstmt.setString(2, to+"%");
              rs = pstmt.executeQuery();
              if (rs.next())
              {
