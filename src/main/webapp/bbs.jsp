@@ -6,8 +6,7 @@
 <%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width" initial-scale="1" > 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" name="viewport" content="width=device-width" initial-scale="1">
 <link rel="stylesheet" href="css/bootstrap.css">
 <title>My web site</title>
 <style type = "text/css">
@@ -32,8 +31,13 @@
         pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
     }
     
-	String field_ = request.getParameter("f");
-	String query_ = request.getParameter("q");
+	String f_ = request.getParameter("f");
+	if(f_ ==null)
+		f_ = "" ;    // 필드명 캐치 
+	
+	String q_ = request.getParameter("q");
+	if(q_ ==null)
+		q_ = "" ;    //검색어 캐치
 %>
 
     <!-- 게시판(게시글 목록) 영역 -->
@@ -51,7 +55,7 @@
                   <tbody>
                     <%
                     BbsDAO bbsDAO = new BbsDAO();
-                    ArrayList<BBS> list = bbsDAO.getList1(field_,query_,pageNumber);
+                    ArrayList<BBS> list = bbsDAO.getList1(f_,q_,pageNumber);
                     //ArrayList<BBS> list = bbsDAO.getList();
                     for(int i = 0; i < list.size(); i++)
                     { 
@@ -77,15 +81,16 @@
 							</script>
 							<strong>
 							 </strong></div>
-			<form>
+						<form>
 				<fieldset>
                  <!--    <legend>글 검색 필드</legend>      -->               
-                    <label>검색분류</label>
-                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"  name = "f" >
+                     <label class = "Hidden">검색분류</label>
+                           <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"  name = "f" >
                             <option ${(param.f == "bbstitle")? "selected" : ""} value = "bbstitle">제목</option>  
-                            <option ${(param.f == "userid")? "selected" : ""} value = "userid)">작성자</option>
+                            <option ${(param.f == "bbscontent")? "selected" : ""} value = "bbscontent">내용</option>
+                            <option ${(param.f == "userid")? "selected" : ""} value = "userid">작성자</option>                            
                         </select>
-                    <label>검색어</label>
+                    <label class ="hidden">검색어</label>
                         <input type = "text" name = "q"  value = "${param.q}"/>
                         <input type = "submit"  value = "검색">                
                 </fieldset>        
@@ -100,13 +105,13 @@
 							<%
                 if(pageNumber != 1) {
             %>
-							<a href="bbs.jsp?pageNumber=<%=pageNumber - 1 %>"
+							<a href="bbs.jsp?f=<%=f_%>&q=<%=q_%>&pageNumber=<%=pageNumber - 1 %>"
 								class="btn btn-success btn-arrow-left">이전</a>
 							<%
                 } 
-               if (bbsDAO.nextPage(pageNumber + 1)) {
+               if (bbsDAO.nextPage(f_, q_, pageNumber+1)) {
             %>
-							<a href="bbs.jsp?pageNumber=<%=pageNumber + 1 %>"
+							<a href="bbs.jsp?f=<%=f_%>&q=<%=q_%>&pageNumber=<%=pageNumber + 1 %>"
 								class="btn btn-success btn-arrow-left">다음</a>
 							<%
                 } %>
