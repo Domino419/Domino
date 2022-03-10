@@ -54,11 +54,8 @@ td {
             </table>
              <h3 align="center"></h3>
             <table id="calendar" border="3" align="center" style="border-color:#3333FF ">
-    			<center>
-                      <p> 요기서부서 </p>
+    		<!-- 	<center> -->
+                      <%@ include file="/webmini.html" %>
             </table>
-            
-            
-            
 </body>
 </html>
