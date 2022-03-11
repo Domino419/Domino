@@ -96,7 +96,7 @@
             <table class="table table-striped" style="text-align:center; border:1px solid #dddddd"><thead><tr>
                         <th colspan="2" style="background-color:#eeeeee; text-align:center;">게시판 글수정 양식</th></tr>
                 </thead>
-                <tbody>
+                      <tbody>
                                     <tr>
                     <td><input type="text" class="form-control" placeholder="아이디"  name="bbsID" maxlength="50" value = "<%=Bbs.getBbsid() %>"></td>
                     </tr>

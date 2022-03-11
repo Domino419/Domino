@@ -18,8 +18,9 @@
 	String uid = "web_user";
 	String pwd = "pass";
 	String url = "jdbc:oracle:thin:@localhost:1521:XE";
-	String sql = "SELECT ID, ISBN, TITLE, Writer, Publish, page, price, Pday, memo, Gubun FROM BOOK";%>
-	
+	String sql = "select ID, ISBN, TITLE,REPLACE(Writer, '(지은이)', ''), Publish, Gubun from (select ID, ISBN, TITLE,Writer, Publish, Gubun from BOOK order by DBMS_RANDOM.RANDOM ) ";%>
+
+	<!-- "SELECT ID, ISBN, TITLE,REPLACE(Writer, '(지은이)', ''), Publish, Gubun FROM BOOK"; Db 랜덤 기능 구현 전 쿼리-->
 
 <!DOCTYPE html>
 <html>
@@ -37,7 +38,7 @@
 </head>
 <body>
  <jsp:include page="header.jsp"></jsp:include>
- <%    //이거 지워도 될 거 같은데...
+ <%    
 	String userID = null;
 	if (session.getAttribute("userID") != null) {
 		userID = (String) session.getAttribute("userID");
@@ -63,8 +64,8 @@
 			     	<div style="width: 30%; float:none; margin:0 auto" >
 				     <a href="SorryPage.jsp" class="btn btn-primary pull-right">제목으로 검색하기 </a> 
 					<tr>
-						<th style="background-color: #eeeeee; text-align: center;">ISBN</th>
-						<th style="background-color: #eeeeee; text-align: center;">제목</th>
+						<th style="background-color: #eeeeee; text-align: center;">ISBN</th> 
+						<th style="background-color: #eeeeee; text-align: center;">제목</th>  
 						<th style="background-color: #eeeeee; text-align: center;">저자</th>
 						<th style="background-color: #eeeeee; text-align: center;">출판사</th>
 						<th style="background-color: #eeeeee; text-align: center;">장르구분</th>
@@ -80,7 +81,7 @@
 			<td><%=rs.getString(3)%></td>
 			<td><%=rs.getString(4)%></td>
 			<td><%=rs.getString(5)%></td>
-			<td><%=rs.getString(10)%></td>
+			<td><%=rs.getString(6)%></td>
 		</tr>
 
 	<%
