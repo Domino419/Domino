@@ -39,32 +39,34 @@ a, a:hover {
 		stmt = conn.createStatement();		// 쿼리 생성
 		rs = stmt.executeQuery(sql);
 	%>
-	<center>
-		<H4>사원 명부(더미데이터)</H4>
-
-		<table border="1">
-			<tr>
-				<td>사번</td>
-				<td>이름</td>
-				<td>입사일</td>
-				<td>퇴사일</td>
-				<td>소속1</td>
-				<td>소속2</td>
-			</tr>
-			<%
-			while (rs.next()) {
-		%>
-			<tr>
-				<td><%=rs.getString(1)%></td>
-				<td><%=rs.getString(2)%></td>
-				<td><%=rs.getString(3).substring(0, 9)%></td>
-				<td><%=rs.getString(4).substring(0, 9)%></td>
-				<td><%=rs.getString(5)%></td>
-				<td><%=rs.getString(6)%></td>
-			</tr>
-
-
-			<%
+	<center><H4>ㅁ사원 명부ㅁ</H4></center>
+	<div class="container">
+		<div class="row">
+			<table class="table table-striped"
+				style="text-align: center; border: 1px solid #dddddd">
+				<thead>
+					<tr>
+						<th style="background-color: #eeeeee; text-align: center;">사번</th>
+						<th style="background-color: #eeeeee; text-align: center;">이름</th>
+						<th style="background-color: #eeeeee; text-align: center;">입사일</th>
+						<th style="background-color: #eeeeee; text-align: center;">퇴사일</th>
+						<th style="background-color: #eeeeee; text-align: center;">소속1</th>
+						<th style="background-color: #eeeeee; text-align: center;">소속2</th>
+					</tr>
+				</thead>
+				<tbody>
+					<%
+					while (rs.next()) {
+					%>
+					<tr>
+						<td><%=rs.getString(1)%></td>
+						<td><%=rs.getString(2)%></td>
+						<td><%=rs.getString(3).substring(0, 9)%></td>
+						<td><%=rs.getString(4).substring(0, 9)%></td>
+						<td><%=rs.getString(5)%></td>
+						<td><%=rs.getString(6)%></td>
+					</tr>
+					<%
 			}
 			} catch (Exception e) {
 			e.printStackTrace();
@@ -84,20 +86,18 @@ a, a:hover {
 			}
 			}
 			%>
-		</table>
-
-		<div class="container">
-			<div class="row">
-				<div class="col text-center" style="text-align: center">
-					<input type="button" button class="btn btn-default" value="창닫기"
-						onclick="window.close();">
+			</table>
+		<!-- 	<div class="container">
+				<div class="row">
+					<div class="col text-center" style="text-align: center">
+						<input type="button" button class="btn btn-default" value="창닫기"
+							onclick="window.close();">
+					</div>
 				</div>
 			</div>
-		</div>
-
-
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script src="/js/bootstrap.js"></script>
+ -->
+			<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+			<script src="/js/bootstrap.js"></script>
 </body>
 
 </html>
