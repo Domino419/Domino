@@ -4,6 +4,7 @@
 <%@ page import="BBS.BbsDAO" %>
 <%@ page import="BBS.BBS" %>
 <%@ page import="java.util.ArrayList" %>
+<%@page isErrorPage="true" %>
 <!DOCTYPE html>
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" name="viewport" content="width=device-width" initial-scale="1">
@@ -18,7 +19,7 @@
 </style>
 </head>
 <body>
- <jsp:include page="header.jsp"></jsp:include>
+ <jsp:include page="/header.jsp"></jsp:include>
 <%
     String userID = null; 
     if (session.getAttribute("userID") != null)
@@ -42,7 +43,7 @@
 
     <!-- 게시판(게시글 목록) 영역 -->
     <div class="container">
-        <div class="row">
+        <div class="row"  >
             <table class="table table-striped" style="text-align:center; border:1px solid #dddddd">
                 <thead>
                     <tr>
@@ -60,10 +61,11 @@
                     for(int i = 0; i < list.size(); i++)
                     { 
                     %>
-                
+                    
                     <tr>
+                   
                         <td><%=list.get(i).getBbsid() %></td>
-                        <td><a href="view.jsp?Bbsid=<%=list.get(i).getBbsid()%>"><%=list.get(i).getBbstitle() %></a></td>
+                        <td align = "left"><a href="view.jsp?Bbsid=<%=list.get(i).getBbsid()%>"><%=list.get(i).getBbstitle() %></a></td>
                         <td><%=list.get(i).getUserID() %></td>
                         <td><%=list.get(i).getBbsdate() %></td>
                     </tr>
@@ -119,5 +121,5 @@
 						<!-- 	<a href="write.jsp" class="btn btn-primary pull-right">글쓰기</a> -->
 
 							<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-							<script src="js/bootstrap.js"></script></body>
+							<script src="/js/bootstrap.js"></script></body>
 </html>
