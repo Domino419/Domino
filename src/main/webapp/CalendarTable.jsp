@@ -5,6 +5,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="Tableocl.CalendarDao" %>
 
+
 <%
 	Calendar cal = Calendar.getInstance();
 	int year = request.getParameter("year") == null ? cal.get(Calendar.YEAR) : Integer.parseInt(request.getParameter("year")); 
@@ -87,7 +88,7 @@ td {
 				calform.submit();
 			}
 		</script>
-	<div class="container">
+	
 		<div class="row">
 			<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
 				<thead>
@@ -102,7 +103,7 @@ td {
 						<th style="background-color: #eeeeee; text-align: center;">토</th> 
 					</tr>
 				</thead>
-				
+			
 				
 <%
 	while(first_day<=last_day) {
@@ -146,10 +147,22 @@ td {
     					<input type=text name=memoMonth size=2>월
     					<input type=text name=memoDay size=2>일 내용 :
     					<input type=text name=memoContents>
-    					<input type=submit value="일정추가">
+    					<input type=submit class="btn btn-primary" value="일정추가">
     					<h2></h2>
     				</form>
-                </tbody>
+    				
+			<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
+				<thead>
+			     	<div style="width: 30%; float:none; margin:0 auto" >
+					<tr>
+						<th style="background-color: #eeeeee; text-align: center;">날짜</th> 
+						<th style="background-color: #eeeeee; text-align: center;">내용</th> 
+					</tr>
+				</thead>
+					  <tr>
+                        <td>테스트</td>
+                        <td>등록된 일정 보여주기 & 일정추가시 Ajax로 테이블 하단에 일정추가하기</td>
+                    </tr>
             </table>
             	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
                 <script src="js/bootstrap.js"></script>
