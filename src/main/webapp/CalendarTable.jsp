@@ -4,6 +4,7 @@
 <%@ page import="java.util.Calendar" %> 
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="Tableocl.CalendarDao" %>
+<%@ page import="Tableocl.CalendarDto" %>
 
 
 <%
@@ -43,6 +44,19 @@ td {
 </head>
 <body>
 <jsp:include page="/header.jsp"></jsp:include>
+<%
+    String userID = null; 
+    if (session.getAttribute("userID") != null)
+    {userID = (String)session.getAttribute("userID");}   // 세션 저장 
+    
+	String y_ = request.getParameter("y");    // year 캐치 
+	if(y_ ==null)
+		y_ = "" ;    // 필드명 캐치 
+	
+	String m_ = request.getParameter("m");  // month 캐치 
+	if(m_ ==null)
+		m_ = "" ;    //검색어 캐치
+%>
 
     
     <form name="calform" method="post">
@@ -159,10 +173,28 @@ td {
 						<th style="background-color: #eeeeee; text-align: center;">내용</th> 
 					</tr>
 				</thead>
+				
+				    <tbody>
+                    <%
+                    CalendarDao calendardao = new CalendarDao();
+                    ArrayList<CalendarDto> list = calendardao.getList(y_,m_);
+                    for(int j = 0; j < list.size(); j++)
+                    { 
+                    %>
+                    
+                    <tr>
+                        <td><%=list.get(j).getMemoMonth() %></td>    
+                        <td><%=list.get(j).getMemoContents() %></td>    
+                    </tr>
+                <%
+                    }
+                %>
+                </tbody>
+                <!-- 
 					  <tr>
                         <td>테스트</td>
                         <td>등록된 일정 보여주기 & 일정추가시 Ajax로 테이블 하단에 일정추가하기</td>
-                    </tr>
+                    </tr> -->
             </table>
             	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
                 <script src="js/bootstrap.js"></script>

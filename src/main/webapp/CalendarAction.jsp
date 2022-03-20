@@ -1,9 +1,9 @@
 <%@page import="java.io.PrintWriter"%>
-<%@page import="Tableocl.Calendar"%>
+<%@page import="Tableocl.CalendarDto"%>
 <%@page import="Tableocl.CalendarDao"%>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<jsp:useBean id="Tableocl" scope="page" class="Tableocl.Calendar" />
+<jsp:useBean id="Tableocl" scope="page" class="Tableocl.CalendarDto" />
 <jsp:setProperty name="Tableocl" property="memoYear" />
 <jsp:setProperty name="Tableocl" property="memoMonth" />
 <jsp:setProperty name="Tableocl" property="memoDay" />
@@ -62,31 +62,7 @@
 
    
    
-   /* else {
-    if(BbsDAO == null) {
-        PrintWriter script = response.getWriter();
-        script.println("<script>");
-        script.println("alert('입력이 안된 사항이 있습니다.')");
-        script.println("history.back()");
-        script.println("</script>");
-    } else {
-        
-     //   int result = bbsDAO.write(BBS.getBbstitle(), userID ,BBS.getBbscontent());
-            if(result == -1){ // 글쓰기에 실패했을 경우
-                PrintWriter script = response.getWriter(); //하나의 스크립트 문장을 넣을 수 있도록.
-                script.println("<script>");
-                script.println("alert('글쓰기에 실패했습니다.')");
-                script.println("history.back()");
-                script.println("</script>");
-            }
-            else { // 글쓰기에 성공했을 경우
-                PrintWriter script = response.getWriter();
-                script.println("<script>");
-                script.println("location.href= 'bbs.jsp'");
-                script.println("</script>");
-             }
-        }
-    } */
+
 	%>
 </body>
 </html>
