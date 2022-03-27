@@ -5,5 +5,5 @@
 	response.addCookie(cookie);
 %>
 <script>
-location.href="cookieExample1.jsp"
+location.href="/cookie/cookieExample1.jsp"
 </script>

@@ -13,6 +13,7 @@
 		}
 	}
 %>
+
 <html>
 <head>
 <title>쿠키를 이용한 화면 설정 예제</title>
@@ -24,7 +25,7 @@
 		<h3>Hello. This is Cookie example.</h3>
 	<%} %>
 	
-	<form action="cookieExample2.jsp" method="post">
+	<form action="/cookie/cookieExample2.jsp" method="post">
 		<input type="radio" name="language" value="korea" 
 		  <%if(language.equals("korea")){%>checked<%}%>>한국어 페이지 보기
 		<input type="radio" name="language" value="english"
